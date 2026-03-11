@@ -3,6 +3,7 @@ import { HeaderComponent } from '../../features/header/header.component';
 import { HeroSliderComponent } from '../../features/hero-slider/hero-slider.component';
 import { FilterSidebarComponent } from '../../features/filter-sidebar/filter-sidebar.component';
 import { DestinationGridComponent } from '../../features/destination-grid/destination-grid.component';
+import { FooterComponent } from '../../features/footer/footer.component';
 import { Destination, FilterOption } from '../../core/models/destination.model';
 
 @Component({
@@ -12,7 +13,8 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
     HeaderComponent,
     HeroSliderComponent,
     FilterSidebarComponent,
-    DestinationGridComponent
+    DestinationGridComponent,
+    FooterComponent  // <-- Añadido
   ],
   template: `
     <div class="home-layout">
@@ -32,10 +34,18 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
           (onPriceChange)="handlePriceChange($event)"
         ></app-filter-sidebar>
       </div>
+
+      <app-footer></app-footer>  <!-- <-- Añadido -->
     </div>
   `,
   styles: [`
     /* ===== MOBILE FIRST ===== */
+    .home-layout {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     .home-layout__main {
       display: grid;
       grid-template-columns: 1fr;
@@ -43,6 +53,7 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      flex: 1;
     }
 
     /* ===== DESKTOP (≥ 1024px) ===== */
