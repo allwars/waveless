@@ -7,70 +7,143 @@ import { ButtonComponent } from '../../shared/atoms/button/button.component';
   imports: [ButtonComponent],
   template: `
     <section class="hero">
-      <div class="hero__content">
-        <h1 class="hero__title">Vive tus propias aventuras</h1>
-        <p class="hero__subtitle">Para los que les gusta explorar y conocer mundo sin complejos</p>
-        <app-button variant="primary" size="large" class="hero__cta">Ver filtros</app-button>
+      <div class="hero__background">
+        <img
+          src="../../assets/images/hero-bg.jpg"
+          alt="Ruta por Australia"
+          class="hero__image">
+        <div class="hero__overlay"></div>
       </div>
-      <div class="hero__image">
-        <img src="assets/images/hero-bg.jpg" alt="Aventura" class="hero__img">
+
+      <div class="hero__container">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            <span class="hero__title-line">Ruta por Australia</span>
+            <span class="hero__title-line hero__title-line--highlight">Si te va la aventura,</span>
+            <span class="hero__title-line">no te lo puedes perder</span>
+          </h1>
+
+          <div class="hero__cta">
+            <app-button
+              variant="primary"
+              size="large"
+              class="hero__button">
+              Más información
+            </app-button>
+          </div>
+        </div>
       </div>
     </section>
   `,
   styles: [`
     .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      position: relative;
+      height: 100vh;
       min-height: 600px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .hero__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem;
-      color: white;
-    }
-
-    .hero__title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
-
-    .hero__subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .hero__cta {
-      align-self: flex-start;
-    }
-
-    .hero__image {
+      width: 100%;
       overflow: hidden;
     }
 
-    .hero__img {
+    .hero__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero__image {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
+    .hero__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2) 100%);
+    }
+
+    .hero__container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero__content {
+      color: white;
+      max-width: 800px;
+    }
+
+    .hero__title {
+      margin-bottom: 2rem;
+    }
+
+    .hero__title-line {
+      display: block;
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero__title-line--highlight {
+      font-weight: 700;
+      color: #ff6b35;
+    }
+
+    .hero__cta {
+      margin-top: 2rem;
+    }
+
+    .hero__button ::ng-deep .btn {
+      font-size: 1.2rem;
+      padding: 1rem 3rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .hero__title-line {
+        font-size: 3rem;
+      }
+    }
+
+    /* Móvil */
     @media (max-width: 768px) {
       .hero {
-        grid-template-columns: 1fr;
+        min-height: 500px;
       }
 
-      .hero__content {
-        padding: 2rem;
+      .hero__container {
+        padding: 0 1rem;
+        justify-content: center;
+        text-align: center;
       }
 
-      .hero__title {
-        font-size: 2.5rem;
+      .hero__title-line {
+        font-size: 2.2rem;
+      }
+
+      .hero__overlay {
+        background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+      }
+    }
+
+    /* Móvil pequeño */
+    @media (max-width: 480px) {
+      .hero__title-line {
+        font-size: 1.8rem;
       }
     }
   `]

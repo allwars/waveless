@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ===== MOBILE FIRST ===== */
+/* Estilos base para móvil (0px a 767px) */
+
 /* Reset y estilos globales */
 * {
   margin: 0;
@@ -11,6 +15,8 @@ body {
   line-height: 1.6;
   color: #333;
   background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
 }
 
 img {
@@ -30,22 +36,105 @@ img {
   --border-radius: 8px;
 }
 
-/* Utilidades */
+/* Utilidades - Mobile First */
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%; /* En móvil ocupa todo el ancho */
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Media queries globales */
-@media (max-width: 1024px) {
+/* Hero - Mobile First */
+app-hero {
+  display: block;
+  padding-top: 70px; /* Altura del header en móvil */
+}
+
+/* Layout principal - Mobile First */
+.home-layout__main {
+  padding-top: 1rem;
+}
+
+/* ===== TABLET (768px en adelante) ===== */
+@media (min-width: 768px) {
   .container {
-    max-width: 960px;
+    max-width: 720px; /* Ancho típico de tablet */
+    padding: 0 2rem;
+  }
+
+  app-hero {
+    padding-top: 75px; /* Ajuste para tablet */
+  }
+
+  .home-layout__main {
+    padding-top: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
+/* ===== TABLET GRANDE / DESKTOP PEQUEÑO (992px en adelante) ===== */
+@media (min-width: 992px) {
   .container {
-    max-width: 100%;
+    max-width: 960px; /* Ancho típico desktop pequeño */
+  }
+
+  app-hero {
+    padding-top: 80px; /* Altura del header en desktop */
+  }
+
+  .home-layout__main {
+    padding-top: 2rem;
+  }
+}
+
+/* ===== DESKTOP (1200px en adelante) ===== */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px; /* Ancho típico desktop */
+  }
+}
+
+/* ===== DESKTOP GRANDE (1400px en adelante) ===== */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px; /* Ancho típico desktop grande */
+  }
+}
+
+/* Utilidades adicionales (opcional, manteniendo Mobile First) */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Ocultar elementos según dispositivo */
+.hide-on-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+
+  .hide-on-tablet-up {
+    display: none;
+  }
+}
+
+/* Mostrar elementos según dispositivo */
+.show-on-mobile {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .show-on-mobile {
+    display: none;
   }
 }

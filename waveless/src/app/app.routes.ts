@@ -7,8 +7,5 @@ export const routes: Routes = [
     component: HomePageComponent,
     title: 'WaveLess - Vive tus propias aventuras'
   },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+
 ];

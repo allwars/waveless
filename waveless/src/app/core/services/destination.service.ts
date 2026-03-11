@@ -15,10 +15,12 @@ export class DestinationService {
       region: 'africa',
       image: 'assets/images/marruecos.jpg',
       days: 9,
-      price: 2455.00,
+      price: 248.00,
+      originalPrice: 1124.00,
       currency: '€',
       tags: ['Quads', 'Rafting', 'Cultura'],
-      featured: true
+      featured: true,
+      description: 'Descubre Bangkok con Iberojet'
     },
     {
       id: 2,
@@ -27,9 +29,11 @@ export class DestinationService {
       region: 'asia',
       image: 'assets/images/tailandia.jpg',
       days: 12,
-      price: 3290.00,
+      price: 248.00,
+      originalPrice: 1124.00,
       currency: '€',
-      tags: ['Buceo', 'Parapente', 'Gastronomía']
+      tags: ['Buceo', 'Parapente', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
     },
     {
       id: 3,
@@ -38,20 +42,89 @@ export class DestinationService {
       region: 'america',
       image: 'assets/images/peru.jpg',
       days: 14,
-      price: 2890.00,
+      price: 248.00,
+      originalPrice: 1124.00,
       currency: '€',
-      tags: ['Senderismo', 'Cultura', 'Gastronomía']
+      tags: ['Senderismo', 'Cultura', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
     },
     {
       id: 4,
-      title: 'Islandia',
-      location: 'Europa',
-      region: 'europa',
-      image: 'assets/images/islandia.jpg',
-      days: 8,
-      price: 4190.00,
+      title: 'Marruecos',
+      location: 'África',
+      region: 'africa',
+      image: 'assets/images/marruecos.jpg',
+      days: 9,
+      price: 248.00,
+      originalPrice: 1124.00,
       currency: '€',
-      tags: ['Auroras', 'Glaciares', '4x4']
+      tags: ['Quads', 'Rafting', 'Cultura'],
+      description: 'Descubre Bangkok con Iberojet'
+    },
+    {
+      id: 5,
+      title: 'Tailandia',
+      location: 'Asia',
+      region: 'asia',
+      image: 'assets/images/tailandia.jpg',
+      days: 12,
+      price: 248.00,
+      originalPrice: 1124.00,
+      currency: '€',
+      tags: ['Buceo', 'Parapente', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
+    },
+    {
+      id: 6,
+      title: 'Perú',
+      location: 'América del Sur',
+      region: 'america',
+      image: 'assets/images/peru.jpg',
+      days: 14,
+      price: 248.00,
+      originalPrice: 1124.00,
+      currency: '€',
+      tags: ['Senderismo', 'Cultura', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
+    },
+    {
+      id: 7,
+      title: 'Marruecos',
+      location: 'África',
+      region: 'africa',
+      image: 'assets/images/marruecos.jpg',
+      days: 9,
+      price: 248.00,
+      originalPrice: 1124.00,
+      currency: '€',
+      tags: ['Quads', 'Rafting', 'Cultura'],
+      description: 'Descubre Bangkok con Iberojet'
+    },
+    {
+      id: 8,
+      title: 'Tailandia',
+      location: 'Asia',
+      region: 'asia',
+      image: 'assets/images/tailandia.jpg',
+      days: 12,
+      price: 248.00,
+      originalPrice: 1124.00,
+      currency: '€',
+      tags: ['Buceo', 'Parapente', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
+    },
+    {
+      id: 9,
+      title: 'Perú',
+      location: 'América del Sur',
+      region: 'america',
+      image: 'assets/images/peru.jpg',
+      days: 14,
+      price: 248.00,
+      originalPrice: 1124.00,
+      currency: '€',
+      tags: ['Senderismo', 'Cultura', 'Gastronomía'],
+      description: 'Descubre Bangkok con Iberojet'
     }
   ];
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { HeroComponent } from '../../features/hero/hero.component';
+import { HeaderComponent } from '../../features/header/header.component';
+import { HeroSliderComponent } from '../../features/hero-slider/hero-slider.component';
 import { FilterSidebarComponent } from '../../features/filter-sidebar/filter-sidebar.component';
 import { DestinationGridComponent } from '../../features/destination-grid/destination-grid.component';
 import { Destination, FilterOption } from '../../core/models/destination.model';
@@ -7,12 +8,22 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
 @Component({
   selector: 'app-home-layout',
   standalone: true,
-  imports: [HeroComponent, FilterSidebarComponent, DestinationGridComponent],
+  imports: [
+    HeaderComponent,
+    HeroSliderComponent,
+    FilterSidebarComponent,
+    DestinationGridComponent
+  ],
   template: `
     <div class="home-layout">
-      <app-hero></app-hero>
+      <app-header></app-header>
+      <app-hero-slider></app-hero-slider>
 
       <div class="home-layout__main">
+        <main class="home-layout__content">
+          <app-destination-grid [destinations]="destinations"></app-destination-grid>
+        </main>
+
         <app-filter-sidebar
           [destinos]="filterDestinos"
           [aventuras]="filterAventuras"
@@ -20,23 +31,26 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
           (onFilterChange)="handleFilterChange($event)"
           (onPriceChange)="handlePriceChange($event)"
         ></app-filter-sidebar>
-
-        <main class="home-layout__content">
-          <app-destination-grid [destinations]="destinations"></app-destination-grid>
-        </main>
       </div>
     </div>
   `,
   styles: [`
+    /* ===== MOBILE FIRST ===== */
     .home-layout__main {
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 1fr;
       min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
 
-    @media (max-width: 768px) {
+    /* ===== DESKTOP (≥ 1024px) ===== */
+    @media (min-width: 1024px) {
       .home-layout__main {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+        padding: 2rem;
       }
     }
   `]
@@ -55,6 +69,8 @@ export class HomeLayoutComponent {
     { id: 'quads', label: 'Quads', count: 6 },
     { id: 'parapente', label: 'Parapente', count: 4 },
     { id: 'rafting', label: 'Rafting', count: 8 },
+    { id: 'explora', label: 'Explora', count: 12 },
+    { id: 'lorem-ipsum', label: 'Lorem ipsum', count: 5 },
     { id: 'buceo', label: 'Buceo', count: 5 },
     { id: 'paracaidas', label: 'Paracaídas', count: 3 },
     { id: 'snowboard', label: 'Snowboard', count: 7 },
@@ -70,11 +86,9 @@ export class HomeLayoutComponent {
 
   handleFilterChange(filters: any) {
     console.log('Filters changed:', filters);
-    // Aquí iría la lógica de filtrado
   }
 
   handlePriceChange(price: any) {
     console.log('Price changed:', price);
-    // Aquí iría la lógica de filtrado por precio
   }
 }

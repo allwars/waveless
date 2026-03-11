@@ -6,9 +6,11 @@ export interface Destination {
   image: string;
   days: number;
   price: number;
+  originalPrice?: number; // Precio antes de impuestos
   currency: string;
   tags: string[];
   featured?: boolean;
+  description: string; // "Descubre Bangkok con Iberojet"
 }
 
 export interface PriceBreakdown {
