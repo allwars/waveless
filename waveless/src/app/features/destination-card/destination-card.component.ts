@@ -90,7 +90,6 @@ import { Destination } from '../../core/models/destination.model';
     <!-- Popup para desktop (2+ columnas) -->
     @if (showPriceBreakdown && !isMobile) {
       <div class="breakdown-popup" [style.top.px]="popupTop" [style.left.px]="popupLeft">
-        <div class="breakdown-popup__arrow"></div>
         <div class="breakdown-popup__content">
           <div class="breakdown-popup__header">
             <h4 class="breakdown-popup__title">Desglose de precios</h4>
@@ -128,6 +127,7 @@ import { Destination } from '../../core/models/destination.model';
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
+      min-height: 376px;
       width: 264px;
       display: flex;
       flex-direction: column;
@@ -227,16 +227,16 @@ import { Destination } from '../../core/models/destination.model';
       gap: 0.25rem;
       background: none;
       border: none;
-      color: #666;
+      color: #622F60;
       font-size: 0.9rem;
       cursor: pointer;
-      padding: 0.25rem 0;
+      padding: 0.45rem 0;
       transition: color 0.2s ease;
       white-space: nowrap;
     }
 
     .destination-card__breakdown-btn:hover {
-      color: #ff6b35;
+      color: #622F60;
     }
 
     .destination-card__breakdown-icon {
@@ -248,22 +248,21 @@ import { Destination } from '../../core/models/destination.model';
     }
 
     .destination-card__reserve-btn {
-      background-color: #ff6b35;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 0.4rem 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
+      background-color: #ffffff;
+    color: #622F60;
+    border: 1px solid #622F60;
+    border-radius: 30px;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
     }
 
     .destination-card__reserve-btn:hover {
-      background-color: #e85a2a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+      background-color: #622F60;
+      color: #ffffff;
     }
 
     /* ===== BREAKDOWN MODAL (MÓVIL - 1 columna) ===== */
@@ -378,7 +377,7 @@ import { Destination } from '../../core/models/destination.model';
   position: absolute; /* Cambiado de fixed a absolute */
   width: 320px;
   background: white;
-  border-radius: 16px;
+  border-radius: 24px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   z-index: 1000;
   animation: fadeIn 0.2s ease;
@@ -386,27 +385,23 @@ import { Destination } from '../../core/models/destination.model';
   /* Eliminamos transform y margin-top negativos */
 }
 
-.breakdown-popup__arrow {
-  position: absolute;
-  bottom: -8px;
-  left: 20px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid white;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05));
-}
 
 .breakdown-popup__content {
-  padding: 1.25rem;
+  border-radius: 24px;
 }
 
-.breakdown-popup__header {
+.breakdown-popup__header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.75rem;
+  background-color: #FBF6F4;
+  padding: 1.25rem ;
+  border-radius: 24px 24px 0 0;
+    border-bottom: 1px solid #E0D9E0;
+}
+.breakdown-popup__total {
+
 }
 
 .breakdown-popup__title {
@@ -436,26 +431,30 @@ import { Destination } from '../../core/models/destination.model';
   font-weight: 600;
   color: #333;
   margin: 0 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #eaeaea;
+   padding: 0.5rem 1.25rem;
+
 }
 
 .breakdown-popup__item {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  padding: 0.5rem 1.25rem;
   font-size: 0.9rem;
   color: #666;
 }
 
 .breakdown-popup__total {
   font-weight: 700;
-  color: #ff6b35;
+  color: #342E34;
   border-bottom: none;
   margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 2px solid #eaeaea;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FBF6F4;
+  padding: 1.25rem ;
+   border-bottom: 1px solid #E0D9E0;
 }
 
 @keyframes fadeIn {
