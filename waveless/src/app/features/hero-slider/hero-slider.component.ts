@@ -24,8 +24,8 @@ interface Slide {
 
             <div class="hero-slider__content">
               <h1 class="hero-slider__title">
-                <span class="hero-slider__title-line">{{ slide.title }}</span>
-                <span class="hero-slider__title-line hero-slider__title-line--highlight">{{ slide.subtitle }}</span>
+                <span class="hero-slider__title-line hero-slider__title-line--highlight">{{ slide.title }}</span>
+                <span class="hero-slider__title-line ">{{ slide.subtitle }}</span>
               </h1>
 
               <div class="hero-slider__cta">
@@ -125,8 +125,9 @@ interface Slide {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       color: white;
+      text-align: center;
     }
 
     .hero-slider__title {
@@ -143,12 +144,12 @@ interface Slide {
 
     .hero-slider__title-line--highlight {
       font-weight: 700;
-      color: #ff6b35;
+      color: #ffffff;
     }
 
     .hero-slider__button {
-      background-color: #ff6b35;
-      color: white;
+      background-color: #FF8F50;
+      color: #4E250E;
       border: none;
       border-radius: 30px;
       padding: 0.8rem 2rem;
@@ -161,9 +162,7 @@ interface Slide {
     }
 
     .hero-slider__button:hover {
-      background-color: #e85a2a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+      background-color: #FF8F50;
     }
 
     /* Flechas de navegación */
@@ -173,8 +172,7 @@ interface Slide {
       transform: translateY(-50%);
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+      background: rgba(98, 47, 96, 0.32);
       border: none;
       cursor: pointer;
       display: flex;
@@ -186,15 +184,15 @@ interface Slide {
     }
 
     .hero-slider__arrow:hover {
-      background: rgba(255,107,53,0.8);
+      background: rgb(98, 47, 96);
     }
 
     .hero-slider__arrow--left {
-      left: 1rem;
+      left: 0rem;
     }
 
     .hero-slider__arrow--right {
-      right: 1rem;
+      right: 0rem;
     }
 
     /* Bolitas indicadoras */
@@ -244,11 +242,11 @@ interface Slide {
       }
 
       .hero-slider__arrow--left {
-        left: 2rem;
+        left: 0rem;
       }
 
       .hero-slider__arrow--right {
-        right: 2rem;
+        right: 0rem;
       }
 
       .hero-slider__dot {
@@ -278,11 +276,11 @@ interface Slide {
       }
 
       .hero-slider__arrow--left {
-        left: 3rem;
+        left: 0rem;
       }
 
       .hero-slider__arrow--right {
-        right: 3rem;
+        right: 0rem;
       }
 
       .hero-slider__dot {

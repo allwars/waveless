@@ -34,7 +34,12 @@ import { Component } from '@angular/core';
           <ul class="header__menu">
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'aventura'" (click)="selectSection('aventura', $event)">
-                <span class="header__menu-icon">🏔️</span>
+                <span class="header__menu-icon"> <img
+              src="assets/images/aventura.svg"
+              alt="WaveLess"
+              class=""
+              width="24"
+              height="24"></span>
                 <span class="header__menu-text">Aventura</span>
               </a>
               @if (selectedSection === 'aventura') {
@@ -44,7 +49,12 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'destinos'" (click)="selectSection('destinos', $event)">
-                <span class="header__menu-icon">🌍</span>
+                <span class="header__menu-icon"> <img
+              src="assets/images/destino.svg"
+              alt="WaveLess"
+              class=""
+              width="24"
+              height="24"></span>
                 <span class="header__menu-text">Destinos</span>
               </a>
               @if (selectedSection === 'destinos') {
@@ -54,7 +64,12 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'alojamiento'" (click)="selectSection('alojamiento', $event)">
-                <span class="header__menu-icon">🏨</span>
+                <span class="header__menu-icon"> <img
+              src="assets/images/alojamiento.svg"
+              alt="WaveLess"
+              class=""
+              width="24"
+              height="24"></span>
                 <span class="header__menu-text">Alojamiento</span>
               </a>
               @if (selectedSection === 'alojamiento') {
@@ -64,7 +79,6 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'sobre-nosotros'" (click)="selectSection('sobre-nosotros', $event)">
-                <span class="header__menu-icon">👥</span>
                 <span class="header__menu-text">Sobre nosotros</span>
               </a>
               @if (selectedSection === 'sobre-nosotros') {
@@ -74,7 +88,6 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item header__menu-item--reserva">
               <a href="#" class="header__menu-link header__menu-link--reserva" [class.active]="selectedSection === 'reserva'" (click)="selectSection('reserva', $event)">
-                <span class="header__menu-icon">📅</span>
                 <span class="header__menu-text">Reserva</span>
               </a>
               <!-- Reserva NO tiene triángulo -->
@@ -90,19 +103,16 @@ import { Component } from '@angular/core';
 
     .header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
       background: white;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      padding: 0.8rem 0;
       z-index: 1000;
+          height: 80px;
+    width: 100%;
+    display: flex;
     }
 
     .header__container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -117,7 +127,7 @@ import { Component } from '@angular/core';
 
     /* Botón menú móvil */
     .header__menu-toggle {
-      display: flex;
+
       flex-direction: column;
       justify-content: space-between;
       width: 30px;
@@ -138,11 +148,7 @@ import { Component } from '@angular/core';
 
     /* Menú móvil - oculto por defecto */
     .header__nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
       width: 80%;
-      max-width: 350px;
       height: 100vh;
       background: white;
       padding: 5rem 1.5rem;
@@ -174,14 +180,14 @@ import { Component } from '@angular/core';
       align-items: center;
       gap: 0.8rem;
       text-decoration: none;
-      color: #666;
       font-size: 1.1rem;
       font-weight: 500;
       padding: 1rem;
-      border-radius: 8px;
       transition: all 0.3s ease;
       width: 100%;
       justify-content: flex-start;
+      color: #342E34;
+      height: 100%;
     }
 
     .header__menu-icon {
@@ -212,10 +218,13 @@ import { Component } from '@angular/core';
 
     /* Activo en móvil (borde izquierdo) */
     .header__menu-link.active:not(.header__menu-link--reserva) {
-      color: #ff6b35;
-      border-left: 4px solid #ff6b35;
-      border-radius: 0;
-      background-color: rgba(255,107,53,0.05);
+     color: #342E34;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #ff6b35;
+    border-radius: 0;
+    height: 100%;
     }
 
     .header__menu-link--reserva.active {
@@ -248,11 +257,11 @@ import { Component } from '@angular/core';
       .header__nav {
         position: static;
         width: auto;
-        height: auto;
+        height: 80px;
         padding: 0;
         background: transparent;
         box-shadow: none;
-        right: auto;
+
       }
 
       .header__menu {
@@ -264,7 +273,8 @@ import { Component } from '@angular/core';
       .header__menu-item {
         width: auto;
         position: relative;
-        padding: 0 0 12px 0; /* Espacio para el triángulo */
+        padding: 0 0 0 0;
+       height:100% /* Espacio para el triángulo */
       }
 
       .header__menu-link {
@@ -272,10 +282,7 @@ import { Component } from '@angular/core';
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
         justify-content: center;
-        border: 1px solid transparent;
-        border-radius: 30px;
-        color: #333;
-        background: transparent;
+        color: #342E34;
       }
 
       .header__menu-icon {
@@ -288,14 +295,25 @@ import { Component } from '@angular/core';
 
       /* Active state - borde naranja */
       .header__menu-link.active {
-        border: 1px solid #ff6b35;
-        background-color: rgba(255,107,53,0.03);
+        color: #342E34;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px solid #ff6b35;
+    border-radius: 0;
+    height: 100%;
       }
 
       /* Hover state */
       .header__menu-link:hover:not(.header__menu-link--reserva) {
-        border: 1px solid #ff6b35;
-        background-color: rgba(255,107,53,0.03);
+        color: #342E34;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 3px solid #ff6b35;
+    border-radius: 0;
+    height: 100%;
+
       }
 
       /* Triángulo - visible solo en desktop */
@@ -307,37 +325,39 @@ import { Component } from '@angular/core';
         transform: translateX(-50%);
         width: 0;
         height: 0;
-        border-left: 7px solid transparent;
+              border-left: 7px solid transparent;
         border-right: 7px solid transparent;
-        border-top: 7px solid #ff6b35;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid #ff6b35;
         z-index: 10;
       }
 
       /* Reserva en desktop */
       .header__menu-item--reserva {
         margin-left: 0.5rem;
+                padding: 1.1rem 0;
       }
 
       .header__menu-link--reserva {
-        background-color: #ff6b35;
-        color: white;
-        border: none !important;
+        background-color: #622F60;
+        color: #ffffff;
+
         padding: 0.5rem 1.5rem;
         border-radius: 30px;
         font-weight: 600;
         margin-top: 0;
       }
 
-      .header__menu-link--reserva:hover {
-        background-color: #e85a2a;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+      .header__menu-link--reserva{
+        &:hover {
+          background-color: #622F60;
+        }
+        &.active{
+          background-color: #622F60;
+        }
+
       }
 
-      .header__menu-link--reserva.active {
-        background-color: #e85a2a;
-        box-shadow: 0 4px 12px rgba(255,107,53,0.3);
-      }
 
       /* Reserva nunca tiene triángulo */
       .header__menu-item--reserva .header__menu-active-indicator {
@@ -361,7 +381,8 @@ import { Component } from '@angular/core';
 
       .header__menu {
         gap: 0.8rem;
-      }
+       height:100%;
+           }
 
       .header__menu-link {
         padding: 0.7rem 1.3rem;
@@ -377,9 +398,10 @@ import { Component } from '@angular/core';
       }
 
       .header__menu-active-indicator {
-        border-left: 8px solid transparent;
+                border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-top: 8px solid #ff6b35;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid #ff6b35;
       }
     }
 
