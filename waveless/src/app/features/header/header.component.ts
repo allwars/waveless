@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <header class="header">
       <div class="header__container">
-        <!-- Logo con imagen SVG externa -->
+        <!-- Logo -->
         <div class="header__logo">
           <a href="/" class="header__logo-link">
             <img
@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
           </a>
         </div>
 
-        <!-- Botón menú móvil (siempre visible en móvil) -->
+        <!-- Botón menú móvil (visible hasta 1023px) -->
         <button
           class="header__menu-toggle"
           (click)="toggleMenu()"
@@ -34,12 +34,9 @@ import { Component } from '@angular/core';
           <ul class="header__menu">
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'aventura'" (click)="selectSection('aventura', $event)">
-                <span class="header__menu-icon"> <img
-              src="assets/images/aventura.svg"
-              alt="WaveLess"
-              class=""
-              width="24"
-              height="24"></span>
+                <span class="header__menu-icon">
+                  <img src="assets/images/aventura.svg" alt="Aventura" width="24" height="24">
+                </span>
                 <span class="header__menu-text">Aventura</span>
               </a>
               @if (selectedSection === 'aventura') {
@@ -49,12 +46,9 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'destinos'" (click)="selectSection('destinos', $event)">
-                <span class="header__menu-icon"> <img
-              src="assets/images/destino.svg"
-              alt="WaveLess"
-              class=""
-              width="24"
-              height="24"></span>
+                <span class="header__menu-icon">
+                  <img src="assets/images/destino.svg" alt="Destinos" width="24" height="24">
+                </span>
                 <span class="header__menu-text">Destinos</span>
               </a>
               @if (selectedSection === 'destinos') {
@@ -64,12 +58,9 @@ import { Component } from '@angular/core';
 
             <li class="header__menu-item">
               <a href="#" class="header__menu-link" [class.active]="selectedSection === 'alojamiento'" (click)="selectSection('alojamiento', $event)">
-                <span class="header__menu-icon"> <img
-              src="assets/images/alojamiento.svg"
-              alt="WaveLess"
-              class=""
-              width="24"
-              height="24"></span>
+                <span class="header__menu-icon">
+                  <img src="assets/images/alojamiento.svg" alt="Alojamiento" width="24" height="24">
+                </span>
                 <span class="header__menu-text">Alojamiento</span>
               </a>
               @if (selectedSection === 'alojamiento') {
@@ -90,7 +81,6 @@ import { Component } from '@angular/core';
               <a href="#" class="header__menu-link header__menu-link--reserva" [class.active]="selectedSection === 'reserva'" (click)="selectSection('reserva', $event)">
                 <span class="header__menu-text">Reserva</span>
               </a>
-              <!-- Reserva NO tiene triángulo -->
             </li>
           </ul>
         </nav>
@@ -98,36 +88,38 @@ import { Component } from '@angular/core';
     </header>
   `,
   styles: [`
-    /* ===== MOBILE FIRST ===== */
-    /* Estilos base para móvil (0px - 767px) */
-
+    /* ===== BASE (aplica a todos los tamaños) ===== */
     .header {
       position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: white;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       z-index: 1000;
-          height: 80px;
-    width: 100%;
-    display: flex;
+      height: 70px;
+      display: flex;
+      align-items: center;
     }
 
     .header__container {
       width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    /* Logo - móvil */
     .header__logo-img {
       display: block;
-      width: 120px;
+      width: 100px;
       height: auto;
     }
 
-    /* Botón menú móvil */
     .header__menu-toggle {
-
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       width: 30px;
@@ -146,12 +138,15 @@ import { Component } from '@angular/core';
       transition: all 0.3s ease;
     }
 
-    /* Menú móvil - oculto por defecto */
     .header__nav {
+      position: fixed;
+      top: 70px;
+      right: -100%;
       width: 80%;
-      height: 100vh;
+      max-width: 350px;
+      height: calc(100vh - 70px);
       background: white;
-      padding: 5rem 1.5rem;
+      padding: 2rem 1.5rem;
       transition: right 0.3s ease;
       box-shadow: -2px 0 15px rgba(0,0,0,0.1);
     }
@@ -163,8 +158,7 @@ import { Component } from '@angular/core';
     .header__menu {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      width: 100%;
+      gap: 1rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -180,58 +174,44 @@ import { Component } from '@angular/core';
       align-items: center;
       gap: 0.8rem;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       transition: all 0.3s ease;
       width: 100%;
-      justify-content: flex-start;
       color: #342E34;
-      height: 100%;
     }
 
     .header__menu-icon {
-      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
     }
 
     .header__menu-text {
       flex: 1;
     }
 
-    /* Reserva en móvil */
     .header__menu-link--reserva {
-      background-color: #ff6b35;
+      background-color: #622F60;
       color: white;
       border-radius: 30px;
       margin-top: 1rem;
       justify-content: center;
     }
 
-    .header__menu-link--reserva .header__menu-icon {
-      color: white;
-    }
-
-    /* Ocultar triángulo en móvil */
     .header__menu-active-indicator {
       display: none;
     }
 
-    /* Activo en móvil (borde izquierdo) */
     .header__menu-link.active:not(.header__menu-link--reserva) {
-     color: #342E34;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 2px solid #ff6b35;
-    border-radius: 0;
-    height: 100%;
+      color: #342E34;
+      border-bottom: 2px solid #ff6b35;
     }
 
     .header__menu-link--reserva.active {
-      background-color: #e85a2a;
+      background-color: #622F60;
     }
 
-    /* Animación botón hamburguesa */
     .header__menu-toggle--active .header__menu-toggle-bar:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
@@ -244,45 +224,104 @@ import { Component } from '@angular/core';
       transform: rotate(-45deg) translate(7px, -7px);
     }
 
-    /* ===== TABLET (768px en adelante) ===== */
-    @media (min-width: 768px) {
+    /* ===== MÓVIL (390px - 743px) ===== */
+    @media (min-width: 390px) and (max-width: 743px) {
+      .header {
+        height: 70px;
+      }
+
       .header__logo-img {
-        width: 130px;
+        width: 100px;
+      }
+
+      .header__menu-link {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+    }
+
+    /* ===== TABLET (744px - 1023px) ===== */
+    @media (min-width: 744px) and (max-width: 1023px) {
+      .header {
+        height: 80px;
+      }
+
+      .header__logo-img {
+        width: 120px;
+      }
+
+      .header__menu-link {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+      }
+
+      .header__nav {
+        max-width: 380px;
+      }
+    }
+
+    /* ===== DESKTOP (1024px - 1440px) ===== */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      .header {
+        height: 90px;
+      }
+
+      .header__container {
+        padding: 0 2rem;
+      }
+
+      .header__logo-img {
+        width: 140px;
       }
 
       .header__menu-toggle {
-        display: none; /* Ocultamos hamburguesa */
+        display: none;
       }
 
       .header__nav {
         position: static;
         width: auto;
-        height: 80px;
+        height: 90px;
         padding: 0;
         background: transparent;
         box-shadow: none;
-
       }
 
       .header__menu {
-        flex-direction: row;
-        gap: 0.3rem;
+               flex-direction: row;
+        gap: 1rem;
         align-items: center;
+        height: 100%;
+        width: 100%;
+        justify-content: flex-end;
+
       }
 
       .header__menu-item {
         width: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
         position: relative;
-        padding: 0 0 0 0;
-       height:100% /* Espacio para el triángulo */
       }
 
       .header__menu-link {
         width: auto;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        justify-content: center;
-        color: #342E34;
+        padding: 0 1rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        border-bottom: 3px solid transparent;
+      }
+
+      .header__menu-link.active {
+        border-bottom: 3px solid #ff6b35;
+      }
+
+      .header__menu-link:hover:not(.header__menu-link--reserva) {
+        border-bottom: 3px solid #ff6b35;
       }
 
       .header__menu-icon {
@@ -291,32 +330,9 @@ import { Component } from '@angular/core';
 
       .header__menu-text {
         flex: none;
+        text-wrap: nowrap;
       }
 
-      /* Active state - borde naranja */
-      .header__menu-link.active {
-        color: #342E34;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 3px solid #ff6b35;
-    border-radius: 0;
-    height: 100%;
-      }
-
-      /* Hover state */
-      .header__menu-link:hover:not(.header__menu-link--reserva) {
-        color: #342E34;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-bottom: 3px solid #ff6b35;
-    border-radius: 0;
-    height: 100%;
-
-      }
-
-      /* Triángulo - visible solo en desktop */
       .header__menu-active-indicator {
         display: block;
         position: absolute;
@@ -325,105 +341,172 @@ import { Component } from '@angular/core';
         transform: translateX(-50%);
         width: 0;
         height: 0;
-              border-left: 7px solid transparent;
+        border-left: 7px solid transparent;
         border-right: 7px solid transparent;
-        border-top: 7px solid transparent;
         border-bottom: 7px solid #ff6b35;
-        z-index: 10;
+        border-top: none;
       }
 
-      /* Reserva en desktop */
       .header__menu-item--reserva {
-        margin-left: 0.5rem;
-                padding: 1.1rem 0;
+        margin-left: 1rem;
       }
 
       .header__menu-link--reserva {
         background-color: #622F60;
-        color: #ffffff;
-
-        padding: 0.5rem 1.5rem;
+        color: white;
+        padding: 0.5rem 1.8rem;
         border-radius: 30px;
         font-weight: 600;
         margin-top: 0;
+        border-bottom: none !important;
+        height: auto;
       }
 
-      .header__menu-link--reserva{
-        &:hover {
-          background-color: #622F60;
-        }
-        &.active{
-          background-color: #622F60;
-        }
-
+      .header__menu-link--reserva:hover {
+        background-color: #622F60;
+        border-bottom: none !important;
       }
 
+      .header__menu-link--reserva.active {
+        background-color: #622F60;
+        border-bottom: none !important;
+      }
 
-      /* Reserva nunca tiene triángulo */
       .header__menu-item--reserva .header__menu-active-indicator {
         display: none;
       }
     }
 
-    /* ===== DESKTOP (1024px en adelante) ===== */
-    @media (min-width: 1024px) {
+    /* ===== DESKTOP GRANDE (1441px en adelante) ===== */
+    @media (min-width: 1441px) {
       .header {
-        padding: 1rem 0;
+        height: 100px;
       }
 
       .header__container {
-        padding: 0 2rem;
+        padding: 0 3rem;
+        max-width: 100%;
       }
 
       .header__logo-img {
-        width: 150px;
+        width: 160px;
+      }
+
+      .header__menu-toggle {
+        display: none;
+      }
+
+      .header__nav {
+        position: static;
+        width: auto;
+        height: 100px;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
       }
 
       .header__menu {
-        gap: 0.8rem;
-       height:100%;
-           }
+               flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .header__menu-item {
+        width: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
 
       .header__menu-link {
-        padding: 0.7rem 1.3rem;
+        width: auto;
+        padding: 0 1.2rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         font-size: 1rem;
+        border-bottom: 3px solid transparent;
+      }
+
+      .header__menu-link.active {
+        border-bottom: 3px solid #ff6b35;
+      }
+
+      .header__menu-link:hover:not(.header__menu-link--reserva) {
+        border-bottom: 3px solid #ff6b35;
       }
 
       .header__menu-icon {
         font-size: 1.2rem;
       }
 
-      .header__menu-link--reserva {
-        padding: 0.7rem 2rem;
+      .header__menu-text {
+        flex: none;
+        text-wrap: nowrap;
       }
 
       .header__menu-active-indicator {
-                border-left: 8px solid transparent;
+        display: block;
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
         border-right: 8px solid transparent;
-        border-top: 8px solid transparent;
         border-bottom: 8px solid #ff6b35;
-      }
-    }
-
-    /* ===== DESKTOP GRANDE (1200px en adelante) ===== */
-    @media (min-width: 1200px) {
-      .header__menu {
-        gap: 1.2rem;
+        border-top: none;
       }
 
-      .header__menu-link {
-        padding: 0.8rem 1.5rem;
+      .header__menu-item--reserva {
+        margin-left: 1.5rem;
       }
 
       .header__menu-link--reserva {
-        padding: 0.8rem 2.2rem;
+        background-color: #622F60;
+        color: white;
+        padding: 0.6rem 2.2rem;
+        border-radius: 30px;
+        font-weight: 600;
+        margin-top: 0;
+        border-bottom: none !important;
+        height: auto;
+      }
+
+      .header__menu-link--reserva:hover {
+        background-color: #622F60;
+        border-bottom: none !important;
+      }
+
+      .header__menu-link--reserva.active {
+        background-color: #622F60;
+        border-bottom: none !important;
+      }
+
+      .header__menu-item--reserva .header__menu-active-indicator {
+        display: none;
       }
     }
   `]
 })
 export class HeaderComponent {
   isMenuOpen = false;
-  selectedSection: string = 'destinos'; // Por defecto seleccionamos Destinos
+  selectedSection: string = 'destinos';
+
+  @HostListener('window:resize')
+  onResize() {
+    // Cerrar menú si la pantalla pasa a desktop
+    if (window.innerWidth >= 1024) {
+      this.isMenuOpen = false;
+      document.body.style.overflow = 'auto';
+    }
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -434,8 +517,8 @@ export class HeaderComponent {
     event.preventDefault();
     this.selectedSection = section;
 
-    // Si estamos en móvil, cerramos el menú al seleccionar
-    if (window.innerWidth <= 767) {
+    // Cerrar menú en móvil/tablet después de seleccionar
+    if (window.innerWidth < 1024) {
       this.isMenuOpen = false;
       document.body.style.overflow = 'auto';
     }
