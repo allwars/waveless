@@ -28,48 +28,63 @@ import { FilterOption } from '../../core/models/destination.model';
         <div class="filter-sidebar__content">
           <!-- Destinos -->
           <div class="filter-section">
-            <h3 class="filter-section__title">Destinos</h3>
-            <div class="filter-section__options">
-              @for (destino of destinos; track destino.id) {
-                <label class="filter-option">
-                  <input
-                    type="checkbox"
-                    [checked]="selectedDestinos.includes(destino.id)"
-                    (change)="toggleDestino(destino.id)"
-                    class="filter-option__checkbox">
-                  <span class="filter-option__label">{{ destino.label }}</span>
-                  @if (destino.count) {
-                    <span class="filter-option__count">{{ destino.count }}</span>
-                  }
-                </label>
-              }
+            <div class="filter-section__header" (click)="toggleSection('destinos')">
+              <div class="filter-section__header-left">
+                <img
+                  src="assets/images/destino.svg"
+                  alt="Destinos"
+                  class="filter-section__icon"
+                  width="24"
+                  height="24">
+                <h3 class="filter-section__title">Destinos</h3>
+              </div>
+              <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['destinos']" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
             </div>
+
+            @if (expandedSections['destinos']) {
+              <div class="filter-section__options">
+                @for (destino of destinos; track destino.id) {
+                  <label class="filter-option">
+                    <input
+                      type="checkbox"
+                      [checked]="selectedDestinos.includes(destino.id)"
+                      (change)="toggleDestino(destino.id)"
+                      class="filter-option__checkbox">
+                    <span class="filter-option__label">{{ destino.label }}</span>
+                    <img
+                      src="assets/images/info.svg"
+                      alt="info"
+                      class="filter-option__info"
+                      width="12"
+                      height="12">
+                  </label>
+                }
+              </div>
+            }
           </div>
 
           <!-- Aventura -->
           <div class="filter-section">
-            <h3 class="filter-section__title">Aventura</h3>
-            <div class="filter-section__options">
-              @for (aventura of aventuras.slice(0, 3); track aventura.id) {
-                <label class="filter-option">
-                  <input
-                    type="checkbox"
-                    [checked]="selectedAventuras.includes(aventura.id)"
-                    (change)="toggleAventura(aventura.id)"
-                    class="filter-option__checkbox">
-                  <span class="filter-option__label">{{ aventura.label }}</span>
-                  @if (aventura.count) {
-                    <span class="filter-option__count">{{ aventura.count }}</span>
-                  }
-                </label>
-              }
+            <div class="filter-section__header" (click)="toggleSection('aventura')">
+              <div class="filter-section__header-left">
+                <img
+                  src="assets/images/aventura.svg"
+                  alt="Aventura"
+                  class="filter-section__icon"
+                  width="24"
+                  height="24">
+                <h3 class="filter-section__title">Aventura</h3>
+              </div>
+              <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['aventura']" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
             </div>
 
-            <!-- Submenú Explora -->
-            <div class="filter-subsection">
-              <h4 class="filter-subsection__title">Explora</h4>
-              <div class="filter-section__options filter-section__options--indented">
-                @for (aventura of aventuras.slice(3, 8); track aventura.id) {
+            @if (expandedSections['aventura']) {
+              <div class="filter-section__options">
+                @for (aventura of aventuras.slice(0, 3); track aventura.id) {
                   <label class="filter-option">
                     <input
                       type="checkbox"
@@ -77,62 +92,129 @@ import { FilterOption } from '../../core/models/destination.model';
                       (change)="toggleAventura(aventura.id)"
                       class="filter-option__checkbox">
                     <span class="filter-option__label">{{ aventura.label }}</span>
-                    @if (aventura.count) {
-                      <span class="filter-option__count">{{ aventura.count }}</span>
-                    }
+                    <img
+                      src="assets/images/info.svg"
+                      alt="info"
+                      class="filter-option__info"
+                      width="12"
+                      height="12">
                   </label>
                 }
               </div>
-            </div>
 
-            <button class="filter-section__more-btn" (click)="showMoreAventuras()">
-              Ver 21 más
-            </button>
+              <!-- Submenú Explora -->
+              <div class="filter-subsection">
+                <h4 class="filter-subsection__title">Explora</h4>
+                <div class="filter-section__options filter-section__options--indented">
+                  @for (aventura of aventuras.slice(3, 8); track aventura.id) {
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedAventuras.includes(aventura.id)"
+                        (change)="toggleAventura(aventura.id)"
+                        class="filter-option__checkbox">
+                      <span class="filter-option__label">{{ aventura.label }}</span>
+                      <img
+                        src="assets/images/info.svg"
+                        alt="info"
+                        class="filter-option__info"
+                        width="12"
+                        height="12">
+                    </label>
+                  }
+                </div>
+              </div>
+
+              <button class="filter-section__more-btn" (click)="showMoreAventuras()">
+                Ver 21 más
+              </button>
+            }
           </div>
 
           <!-- Alojamiento -->
           <div class="filter-section">
-            <h3 class="filter-section__title">Alojamiento</h3>
-            <div class="filter-section__options">
-              @for (alojamiento of alojamientos; track alojamiento.id) {
-                <label class="filter-option">
-                  <input
-                    type="checkbox"
-                    [checked]="selectedAlojamientos.includes(alojamiento.id)"
-                    (change)="toggleAlojamiento(alojamiento.id)"
-                    class="filter-option__checkbox">
-                  <span class="filter-option__label">{{ alojamiento.label }}</span>
-                  @if (alojamiento.count) {
-                    <span class="filter-option__count">{{ alojamiento.count }}</span>
-                  }
-                </label>
-              }
+            <div class="filter-section__header" (click)="toggleSection('alojamiento')">
+              <div class="filter-section__header-left">
+                <img
+                  src="assets/images/alojamiento.svg"
+                  alt="Alojamiento"
+                  class="filter-section__icon"
+                  width="24"
+                  height="24">
+                <h3 class="filter-section__title">Alojamiento</h3>
+              </div>
+              <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['alojamiento']" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
             </div>
+
+            @if (expandedSections['alojamiento']) {
+              <div class="filter-section__options">
+                @for (alojamiento of alojamientos; track alojamiento.id) {
+                  <label class="filter-option">
+                    <input
+                      type="checkbox"
+                      [checked]="selectedAlojamientos.includes(alojamiento.id)"
+                      (change)="toggleAlojamiento(alojamiento.id)"
+                      class="filter-option__checkbox">
+                    <span class="filter-option__label">{{ alojamiento.label }}</span>
+                    <img
+                      src="assets/images/info.svg"
+                      alt="info"
+                      class="filter-option__info"
+                      width="12"
+                      height="12">
+                  </label>
+                }
+              </div>
+            }
           </div>
 
           <!-- Precio -->
           <div class="filter-section">
-            <h3 class="filter-section__title">Precio</h3>
-            <div class="filter-price">
-              <div class="filter-price__inputs">
-                <div class="filter-price__input-group">
-                  <label class="filter-price__label">Mínimo</label>
-                  <input
-                    type="number"
-                    class="filter-price__field"
-                    placeholder="0"
-                    (input)="onMinPriceChange($event)">
-                </div>
-                <div class="filter-price__input-group">
-                  <label class="filter-price__label">Máximo</label>
-                  <input
-                    type="number"
-                    class="filter-price__field"
-                    placeholder="10000"
-                    (input)="onMaxPriceChange($event)">
+            <div class="filter-section__header" (click)="toggleSection('precio')">
+              <div class="filter-section__header-left">
+                <img
+                  src="assets/images/price-color.svg"
+                  alt="Precio"
+                  class="filter-section__icon"
+                  width="24"
+                  height="24">
+                <h3 class="filter-section__title">Precio</h3>
+              </div>
+              <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['precio']" width="16" height="16" viewBox="0 0 16 16">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+
+            @if (expandedSections['precio']) {
+              <div class="filter-price">
+                <div class="filter-price__inputs">
+                  <div class="filter-price__input-group">
+                    <label class="filter-price__label">Mínimo</label>
+                    <div class="filter-price__field-wrapper">
+
+                      <input
+                        type="number"
+                        class="filter-price__field"
+                        placeholder="Mínimo"
+                        (input)="onMinPriceChange($event)">
+                    </div>
+                  </div>
+                  <div class="filter-price__input-group">
+                    <label class="filter-price__label">Máximo</label>
+                    <div class="filter-price__field-wrapper">
+
+                      <input
+                        type="number"
+                        class="filter-price__field"
+                        placeholder="Máximo"
+                        (input)="onMaxPriceChange($event)">
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           </div>
         </div>
       </aside>
@@ -151,41 +233,63 @@ import { FilterOption } from '../../core/models/destination.model';
           <div class="mobile-menu__body">
             <!-- Destinos -->
             <div class="filter-section">
-              <h3 class="filter-section__title">Destinos</h3>
-              <div class="filter-section__options">
-                @for (destino of destinos; track destino.id) {
-                  <label class="filter-option">
-                    <input
-                      type="checkbox"
-                      [checked]="selectedDestinos.includes(destino.id)"
-                      (change)="toggleDestino(destino.id)"
-                      class="filter-option__checkbox">
-                    <span class="filter-option__label">{{ destino.label }}</span>
-                  </label>
-                }
+              <div class="filter-section__header" (click)="toggleSection('mobile-destinos')">
+                <div class="filter-section__header-left">
+                  <img
+                    src="assets/images/destino.svg"
+                    alt="Destinos"
+                    class="filter-section__icon"
+                    width="24"
+                    height="24">
+                  <h3 class="filter-section__title">Destinos</h3>
+                </div>
+                <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['mobile-destinos']" width="16" height="16" viewBox="0 0 16 16">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
               </div>
+
+              @if (expandedSections['mobile-destinos']) {
+                <div class="filter-section__options">
+                  @for (destino of destinos; track destino.id) {
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedDestinos.includes(destino.id)"
+                        (change)="toggleDestino(destino.id)"
+                        class="filter-option__checkbox">
+                      <span class="filter-option__label">{{ destino.label }}</span>
+                      <img
+                        src="assets/images/info.svg"
+                        alt="info"
+                        class="filter-option__info"
+                        width="12"
+                        height="12">
+                    </label>
+                  }
+                </div>
+              }
             </div>
 
             <!-- Aventura -->
             <div class="filter-section">
-              <h3 class="filter-section__title">Aventura</h3>
-              <div class="filter-section__options">
-                @for (aventura of aventuras.slice(0, 3); track aventura.id) {
-                  <label class="filter-option">
-                    <input
-                      type="checkbox"
-                      [checked]="selectedAventuras.includes(aventura.id)"
-                      (change)="toggleAventura(aventura.id)"
-                      class="filter-option__checkbox">
-                    <span class="filter-option__label">{{ aventura.label }}</span>
-                  </label>
-                }
+              <div class="filter-section__header" (click)="toggleSection('mobile-aventura')">
+                <div class="filter-section__header-left">
+                  <img
+                    src="assets/images/aventura.svg"
+                    alt="Aventura"
+                    class="filter-section__icon"
+                    width="24"
+                    height="24">
+                  <h3 class="filter-section__title">Aventura</h3>
+                </div>
+                <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['mobile-aventura']" width="16" height="16" viewBox="0 0 16 16">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
               </div>
 
-              <div class="filter-subsection">
-                <h4 class="filter-subsection__title">Explora</h4>
-                <div class="filter-section__options filter-section__options--indented">
-                  @for (aventura of aventuras.slice(3, 8); track aventura.id) {
+              @if (expandedSections['mobile-aventura']) {
+                <div class="filter-section__options">
+                  @for (aventura of aventuras.slice(0, 3); track aventura.id) {
                     <label class="filter-option">
                       <input
                         type="checkbox"
@@ -193,57 +297,122 @@ import { FilterOption } from '../../core/models/destination.model';
                         (change)="toggleAventura(aventura.id)"
                         class="filter-option__checkbox">
                       <span class="filter-option__label">{{ aventura.label }}</span>
+                      <img
+                        src="assets/images/info.svg"
+                        alt="info"
+                        class="filter-option__info"
+                        width="12"
+                        height="12">
                     </label>
                   }
                 </div>
-              </div>
 
-              <button class="filter-section__more-btn" (click)="showMoreAventuras()">
-                Ver 21 más
-              </button>
+                <div class="filter-subsection">
+                  <h4 class="filter-subsection__title">Explora</h4>
+                  <div class="filter-section__options filter-section__options--indented">
+                    @for (aventura of aventuras.slice(3, 8); track aventura.id) {
+                      <label class="filter-option">
+                        <input
+                          type="checkbox"
+                          [checked]="selectedAventuras.includes(aventura.id)"
+                          (change)="toggleAventura(aventura.id)"
+                          class="filter-option__checkbox">
+                        <span class="filter-option__label">{{ aventura.label }}</span>
+                        <img
+                          src="assets/images/info.svg"
+                          alt="info"
+                          class="filter-option__info"
+                          width="12"
+                          height="12">
+                      </label>
+                    }
+                  </div>
+                </div>
+              }
             </div>
 
             <!-- Alojamiento -->
             <div class="filter-section">
-              <h3 class="filter-section__title">Alojamiento</h3>
-              <div class="filter-section__options">
-                @for (alojamiento of alojamientos; track alojamiento.id) {
-                  <label class="filter-option">
-                    <input
-                      type="checkbox"
-                      [checked]="selectedAlojamientos.includes(alojamiento.id)"
-                      (change)="toggleAlojamiento(alojamiento.id)"
-                      class="filter-option__checkbox">
-                    <span class="filter-option__label">{{ alojamiento.label }}</span>
-                  </label>
-                }
+              <div class="filter-section__header" (click)="toggleSection('mobile-alojamiento')">
+                <div class="filter-section__header-left">
+                  <img
+                    src="assets/images/alojamiento.svg"
+                    alt="Alojamiento"
+                    class="filter-section__icon"
+                    width="24"
+                    height="24">
+                  <h3 class="filter-section__title">Alojamiento</h3>
+                </div>
+                <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['mobile-alojamiento']" width="16" height="16" viewBox="0 0 16 16">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
               </div>
+
+              @if (expandedSections['mobile-alojamiento']) {
+                <div class="filter-section__options">
+                  @for (alojamiento of alojamientos; track alojamiento.id) {
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedAlojamientos.includes(alojamiento.id)"
+                        (change)="toggleAlojamiento(alojamiento.id)"
+                        class="filter-option__checkbox">
+                      <span class="filter-option__label">{{ alojamiento.label }}</span>
+                      <img
+                        src="assets/images/info.svg"
+                        alt="info"
+                        class="filter-option__info"
+                        width="12"
+                        height="12">
+                    </label>
+                  }
+                </div>
+              }
             </div>
 
             <!-- Precio -->
-            <div class="filter-section">
-              <h3 class="filter-section__title">Precio</h3>
-              <div class="filter-price">
-                <div class="filter-price__inputs">
-                  <div class="filter-price__input-group">
-                    <label class="filter-price__label">Mínimo</label>
-                    <input
-                      type="number"
-                      class="filter-price__field"
-                      placeholder="0"
-                      (input)="onMinPriceChange($event)">
-                  </div>
-                  <div class="filter-price__input-group">
-                    <label class="filter-price__label">Máximo</label>
-                    <input
-                      type="number"
-                      class="filter-price__field"
-                      placeholder="10000"
-                      (input)="onMaxPriceChange($event)">
-                  </div>
-                </div>
-              </div>
-            </div>
+<div class="filter-section">
+  <div class="filter-section__header" (click)="toggleSection('precio')">
+    <div class="filter-section__header-left">
+      <img
+        src="assets/images/price-color.svg"
+        alt="Precio"
+        class="filter-section__icon"
+        width="24"
+        height="24">
+      <h3 class="filter-section__title">Precio</h3>
+    </div>
+    <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['precio']" width="16" height="16" viewBox="0 0 16 16">
+      <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  @if (expandedSections['precio']) {
+    <div class="filter-price">
+      <div class="filter-price__row">
+        <span class="filter-price__label">Mínimo</span>
+        <div class="filter-price__input-wrapper">
+          <input
+            type="text"
+            class="filter-price__input"
+            placeholder="0"
+            (input)="onMinPriceChange($event)">
+        </div>
+      </div>
+
+      <div class="filter-price__row">
+        <span class="filter-price__label">Máximo</span>
+        <div class="filter-price__input-wrapper">
+          <input
+            type="text"
+            class="filter-price__input"
+            placeholder="10000"
+            (input)="onMaxPriceChange($event)">
+        </div>
+      </div>
+    </div>
+  }
+</div>
           </div>
 
           <div class="mobile-menu__footer">
@@ -386,16 +555,20 @@ import { FilterOption } from '../../core/models/destination.model';
     @media (min-width: 1024px) {
       .filter-sidebar {
         width: 300px;
-        background: white;
-        border-left: 1px solid #eaeaea;
+        background: #FBF6F4;
         height: fit-content;
         position: sticky;
+        border-radius: 16px;
         top: 80px;
-        padding: 1.5rem;
+        padding: 1.5rem 0;
+        margin-top: 110px;
       }
 
       .filter-sidebar__header {
         margin-bottom: 1.5rem;
+        border-bottom: 1px solid #E0D9E0;
+        padding: 0 1.5rem 1.5rem;
+        text-align: center;
       }
 
       .filter-sidebar__title {
@@ -408,31 +581,69 @@ import { FilterOption } from '../../core/models/destination.model';
       .filter-sidebar__content {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 0.5rem;
+        padding: 0 1.5rem;
       }
     }
 
     /* Estilos comunes para filtros */
     .filter-section {
-      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .filter-section__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .filter-section__header:hover {
+      background-color: rgba(255,107,53,0.05);
+    }
+
+    .filter-section__header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .filter-section__icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     .filter-section__title {
       font-size: 1rem;
       font-weight: 600;
       color: #333;
-      margin: 0 0 1rem 0;
+      margin: 0;
+    }
+
+    .filter-section__arrow {
+      width: 16px;
+      height: 16px;
+      color: #666;
+      transition: transform 0.3s ease;
+    }
+
+    .filter-section__arrow--rotated {
+      transform: rotate(180deg);
     }
 
     .filter-section__options {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      padding: 0.5rem 0 1rem 2rem;
     }
 
     .filter-section__options--indented {
       margin-left: 1.5rem;
-      margin-top: 0.75rem;
+      margin-top: 0.5rem;
     }
 
     .filter-option {
@@ -451,8 +662,16 @@ import { FilterOption } from '../../core/models/destination.model';
       accent-color: #ff6b35;
     }
 
-    .filter-option__label {
-      flex: 1;
+
+    .filter-option__info {
+      width: 12px;
+      height: 12px;
+      opacity: 0.5;
+      cursor: help;
+    }
+
+    .filter-option__info:hover {
+      opacity: 1;
     }
 
     .filter-option__count {
@@ -461,7 +680,7 @@ import { FilterOption } from '../../core/models/destination.model';
     }
 
     .filter-subsection {
-      margin-top: 0.75rem;
+      margin: 0.5rem 0 0.5rem 1rem;
     }
 
     .filter-subsection__title {
@@ -477,8 +696,8 @@ import { FilterOption } from '../../core/models/destination.model';
       color: #ff6b35;
       font-size: 0.9rem;
       cursor: pointer;
-      padding: 0.5rem 0;
-      margin-top: 0.5rem;
+      padding: 0.5rem 0 1rem 2rem;
+      margin-top: 0.25rem;
     }
 
     .filter-section__more-btn:hover {
@@ -486,34 +705,79 @@ import { FilterOption } from '../../core/models/destination.model';
     }
 
     /* Precio */
-    .filter-price__inputs {
-      display: flex;
-      gap: 1rem;
-    }
+  .filter-price {
+  padding: 0.5rem 0 0.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 
-    .filter-price__input-group {
-      flex: 1;
-    }
+.filter-price__field {
+  display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid #622F60;
+    padding: 12px;
+    border-radius: 208px;
+}
 
-    .filter-price__label {
-      display: block;
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 0.25rem;
-    }
+.filter-price__label {
+  font-size: 0.9rem;
+  color: #666;
+}
 
-    .filter-price__field {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
+.filter-price__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-    .filter-price__field:focus {
-      outline: none;
-      border-color: #ff6b35;
-    }
+.filter-price__currency {
+  position: absolute;
+  left: 0;
+  color: #ff6b35;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.filter-price__input {
+  width: 100%;
+  padding: 0.4rem 0 0.4rem 1.2rem;
+  border: none;
+  border-bottom: 1px solid #ff6b35;
+  font-size: 0.9rem;
+  color: #333;
+  background: transparent;
+}
+
+.filter-price__input:focus {
+  outline: none;
+  border-bottom-color: #e85a2a;
+}
+
+.filter-price__input::placeholder {
+  color: #ccc;
+}
+
+/* Versión móvil */
+@media (max-width: 1023px) {
+  .filter-price {
+    padding: 0.5rem 0;
+  }
+}
+
+/* Versión móvil - mismo estilo */
+@media (max-width: 1023px) {
+  .filter-price {
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  .filter-price__input-wrapper {
+    max-width: 120px;
+  }
+}
   `]
 })
 export class FilterSidebarComponent {
@@ -527,6 +791,17 @@ export class FilterSidebarComponent {
   selectedDestinos: string[] = [];
   selectedAventuras: string[] = [];
   selectedAlojamientos: string[] = [];
+
+  expandedSections: { [key: string]: boolean } = {
+    destinos: true,
+    aventura: true,
+    alojamiento: true,
+    precio: true,
+    'mobile-destinos': true,
+    'mobile-aventura': true,
+    'mobile-alojamiento': true,
+    'mobile-precio': true
+  };
 
   isMobile: boolean = false;
   showMobileMenu: boolean = false;
@@ -554,6 +829,10 @@ export class FilterSidebarComponent {
     if (!this.isMobile) {
       this.showMobileMenu = false;
     }
+  }
+
+  toggleSection(section: string) {
+    this.expandedSections[section] = !this.expandedSections[section];
   }
 
   toggleFilterMenu() {

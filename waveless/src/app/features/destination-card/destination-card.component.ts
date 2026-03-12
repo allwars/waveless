@@ -10,6 +10,11 @@ import { Destination } from '../../core/models/destination.model';
   template: `
     <article class="destination-card" #cardElement>
       <div class="destination-card__image-container">
+        <div class="destination-card__tags">
+          @for (tag of destination.tags.slice(0, 1); track tag) {
+            <span class="destination-card__tag">{{ tag }}</span>
+          }
+        </div>
         <img
           [src]="destination.image"
           [alt]="destination.title"
@@ -18,22 +23,19 @@ import { Destination } from '../../core/models/destination.model';
       </div>
 
       <div class="destination-card__content">
-        <div class="destination-card__tags">
-          @for (tag of destination.tags.slice(0, 1); track tag) {
-            <span class="destination-card__tag">{{ tag }}</span>
-          }
+        <div class="destination-card__text">
+          <h3 class="destination-card__title">{{ destination.title }}, {{ destination.location }} {{ destination.days }} días</h3>
+          <p class="destination-card__description">{{ destination.description }}</p>
+
         </div>
 
-        <h3 class="destination-card__title">{{ destination.title }}, {{ destination.location }} {{ destination.days }} días</h3>
-        <p class="destination-card__description">{{ destination.description }}</p>
-
-        <div class="destination-card__price-row">
-          <span class="destination-card__price-label">Desde</span>
-          <span class="destination-card__price">{{ destination.price | number:'1.2-2' }} {{ destination.currency }}</span>
-        </div>
 
         <div class="destination-card__actions">
           <div class="destination-card__breakdown-wrapper" #breakdownWrapper>
+            <div class="destination-card__price-row">
+              <span class="destination-card__price-label">Desde</span>
+              <span class="destination-card__price">{{ destination.price | number:'1.2-2' }} {{ destination.currency }}</span>
+            </div>
             <button
               class="destination-card__breakdown-btn"
               (click)="togglePriceBreakdown($event)">
@@ -126,7 +128,7 @@ import { Destination } from '../../core/models/destination.model';
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
-      height: 100%;
+      width: 264px;
       display: flex;
       flex-direction: column;
     }
@@ -152,12 +154,17 @@ import { Destination } from '../../core/models/destination.model';
 
     .destination-card__tags {
       margin-bottom: 0.5rem;
+      position: absolute;
+      top:10px;
+      right: 10px;
+
+
     }
 
     .destination-card__tag {
       display: inline-block;
       background-color: #ff6b35;
-      color: white;
+      color: #342E34;
       font-size: 0.8rem;
       font-weight: 600;
       padding: 0.2rem 0.8rem;
@@ -166,16 +173,16 @@ import { Destination } from '../../core/models/destination.model';
     }
 
     .destination-card__title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #333;
+      font-size: 0.9rem;
+      color: #622F60;
       margin: 0 0 0.25rem 0;
       line-height: 1.4;
     }
 
     .destination-card__description {
-      font-size: 0.9rem;
-      color: #666;
+      font-size: 1rem;
+      color: #342E34;
+      font-weight: 700;
       margin: 0 0 0.75rem 0;
       line-height: 1.4;
     }
@@ -183,28 +190,31 @@ import { Destination } from '../../core/models/destination.model';
     .destination-card__price-row {
       display: flex;
       align-items: baseline;
-      gap: 0.25rem;
-      margin-bottom: 0.75rem;
+     flex-direction:column;
     }
 
     .destination-card__price-label {
       font-size: 0.9rem;
-      color: #666;
+      color: #342E34;
     }
 
     .destination-card__price {
       font-size: 1.25rem;
-      font-weight: 700;
-      color: #ff6b35;
+      color: #342E34;
+    }
+    .destination-card__text{
+      padding:0.5rem 1.25rem;
     }
 
     .destination-card__actions {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid #eaeaea;
+      background-color: #FBF6F4;
       padding-top: 0.75rem;
       margin-top: auto;
+      padding-left:1.25rem;
+      padding-right:1.25rem;
     }
 
     .destination-card__breakdown-wrapper {
@@ -470,13 +480,6 @@ import { Destination } from '../../core/models/destination.model';
 
     /* ===== TABLET (600px en adelante) ===== */
     @media (min-width: 600px) {
-      .destination-card__title {
-        font-size: 1.1rem;
-      }
-
-      .destination-card__description {
-        font-size: 1rem;
-      }
 
       .destination-card__price {
         font-size: 1.35rem;
@@ -490,7 +493,7 @@ import { Destination } from '../../core/models/destination.model';
     /* ===== DESKTOP (900px en adelante) ===== */
     @media (min-width: 900px) {
       .destination-card__content {
-        padding: 1.25rem;
+        padding: 0;
       }
 
       .destination-card__title {

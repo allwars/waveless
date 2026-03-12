@@ -8,21 +8,9 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
   imports: [DestinationCardComponent],
   template: `
     <section class="destination-grid">
-      <div class="destination-grid__header">
-        <h2 class="destination-grid__title">Vive tus propias aventuras</h2>
-        <p class="destination-grid__subtitle">
-          Para los que les gusta explorar y conocer mundo sin complejos
-        </p>
-      </div>
 
       <div class="destination-grid__filter-header">
         <h3 class="destination-grid__filter-title">Asia</h3>
-        <button class="destination-grid__filter-btn">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          Filtrar mi búsqueda
-        </button>
       </div>
 
       <div class="destination-grid__container">
@@ -42,10 +30,6 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
       margin: 0 auto;
     }
 
-    .destination-grid__header {
-      text-align: left;
-      margin-bottom: 1.5rem;
-    }
 
     .destination-grid__title {
       font-size: 1.8rem;
@@ -68,13 +52,12 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
       align-items: center;
       margin-bottom: 1.5rem;
       padding-bottom: 0.75rem;
-      border-bottom: 1px solid #eaeaea;
     }
 
     .destination-grid__filter-title {
       font-size: 1.25rem;
       font-weight: 600;
-      color: #ff6b35;
+      color: #342E34;
       margin: 0;
     }
 
@@ -92,10 +75,6 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
       transition: all 0.2s ease;
     }
 
-    .destination-grid__filter-btn:hover {
-      border-color: #ff6b35;
-      color: #ff6b35;
-    }
 
     .destination-grid__container {
       display: grid;

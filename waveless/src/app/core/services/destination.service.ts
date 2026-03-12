@@ -38,7 +38,7 @@ export class DestinationService {
     {
       id: 3,
       title: 'Perú',
-      location: 'América del Sur',
+      location: 'América',
       region: 'america',
       image: 'assets/images/peru.jpg',
       days: 14,
@@ -77,7 +77,7 @@ export class DestinationService {
     {
       id: 6,
       title: 'Perú',
-      location: 'América del Sur',
+      location: 'América',
       region: 'america',
       image: 'assets/images/peru.jpg',
       days: 14,
@@ -116,7 +116,7 @@ export class DestinationService {
     {
       id: 9,
       title: 'Perú',
-      location: 'América del Sur',
+      location: 'América',
       region: 'america',
       image: 'assets/images/peru.jpg',
       days: 14,

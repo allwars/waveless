@@ -14,7 +14,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
 }
@@ -29,7 +29,7 @@ img {
   --primary-color: #ff6b35;
   --secondary-color: #4ecdc4;
   --text-color: #333;
-  --background-light: #f8f9fa;
+  --background-light: #ffffff;
   --border-color: #eaeaea;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
@@ -50,10 +50,7 @@ app-hero {
   padding-top: 70px; /* Altura del header en móvil */
 }
 
-/* Layout principal - Mobile First */
-.home-layout__main {
-  padding-top: 1rem;
-}
+
 
 /* ===== TABLET (768px en adelante) ===== */
 @media (min-width: 768px) {
@@ -64,10 +61,6 @@ app-hero {
 
   app-hero {
     padding-top: 75px; /* Ajuste para tablet */
-  }
-
-  .home-layout__main {
-    padding-top: 1.5rem;
   }
 }
 
@@ -81,9 +74,6 @@ app-hero {
     padding-top: 80px; /* Altura del header en desktop */
   }
 
-  .home-layout__main {
-    padding-top: 2rem;
-  }
 }
 
 /* ===== DESKTOP (1200px en adelante) ===== */
@@ -137,4 +127,9 @@ app-hero {
   .show-on-mobile {
     display: none;
   }
+}
+/* En src/styles.scss */
+input:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
 }

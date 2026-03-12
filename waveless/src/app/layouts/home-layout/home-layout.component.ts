@@ -20,12 +20,13 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
     <div class="home-layout">
       <app-header></app-header>
       <app-hero-slider></app-hero-slider>
-
+<div class="destination-grid__header">
+        <h2 class="destination-grid__title">Vive tus propias aventuras</h2>
+        <p class="destination-grid__subtitle">
+          Para los que les gusta explorar y conocer mundo sin complejos
+        </p>
+      </div>
       <div class="home-layout__main">
-        <main class="home-layout__content">
-          <app-destination-grid [destinations]="destinations"></app-destination-grid>
-        </main>
-
         <app-filter-sidebar
           [destinos]="filterDestinos"
           [aventuras]="filterAventuras"
@@ -33,12 +34,23 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
           (onFilterChange)="handleFilterChange($event)"
           (onPriceChange)="handlePriceChange($event)"
         ></app-filter-sidebar>
+        <main class="home-layout__content">
+          <app-destination-grid [destinations]="destinations"></app-destination-grid>
+        </main>
+
       </div>
 
       <app-footer></app-footer>  <!-- <-- Añadido -->
     </div>
   `,
   styles: [`
+
+      .destination-grid__header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      margin:2rem  auto 0;
+    }
+
     /* ===== MOBILE FIRST ===== */
     .home-layout {
       min-height: 100vh;
@@ -47,21 +59,19 @@ import { Destination, FilterOption } from '../../core/models/destination.model';
     }
 
     .home-layout__main {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+
       min-height: 100vh;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
       flex: 1;
     }
 
     /* ===== DESKTOP (≥ 1024px) ===== */
     @media (min-width: 1024px) {
       .home-layout__main {
-        grid-template-columns: 1fr 300px;
-        gap: 2rem;
-        padding: 2rem;
+        width: 100%;
+
       }
     }
   `]
