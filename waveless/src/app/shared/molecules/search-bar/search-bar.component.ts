@@ -28,10 +28,10 @@ import { ButtonComponent } from '../../atoms/button/button.component';
       display: flex;
       gap: 0.5rem;
       width: 100%;
-    }
 
-    .search-bar__input {
-      flex: 1;
+      &__input {
+        flex: 1;
+      }
     }
   `]
 })

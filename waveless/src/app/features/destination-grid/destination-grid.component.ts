@@ -8,7 +8,6 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
   imports: [DestinationCardComponent],
   template: `
     <section class="destination-grid">
-
       <div class="destination-grid__filter-header">
         <h3 class="destination-grid__filter-title">Asia</h3>
       </div>
@@ -23,121 +22,96 @@ import { DestinationCardComponent } from '../destination-card/destination-card.c
     </section>
   `,
   styles: [`
-    /* ===== MOBILE FIRST ===== */
     .destination-grid {
       padding: 1rem;
       max-width: 1200px;
       margin: 0 auto;
-    }
+      width: 100%;
 
-
-    .destination-grid__title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #333;
-      margin: 0 0 0.5rem 0;
-      line-height: 1.2;
-    }
-
-    .destination-grid__subtitle {
-      font-size: 1rem;
-      color: #666;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    .destination-grid__filter-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-    }
-
-    .destination-grid__filter-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #342E34;
-      margin: 0;
-    }
-
-    .destination-grid__filter-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: none;
-      border: 1px solid #ddd;
-      border-radius: 30px;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-
-    .destination-grid__container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    /* ===== TABLET PEQUEÑA (480px en adelante) ===== */
-    @media (min-width: 480px) {
-      .destination-grid {
-        padding: 1.5rem;
+      &__filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
       }
 
-      .destination-grid__container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+      &__filter-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #342E34;
+        margin: 0;
       }
 
-      .destination-grid__title {
-        font-size: 2rem;
-      }
-    }
-
-    /* ===== TABLET (768px en adelante) ===== */
-    @media (min-width: 768px) {
-      .destination-grid {
-        padding: 2rem;
-      }
-
-      .destination-grid__container {
-        grid-template-columns: repeat(2, 1fr);
+      &__container {
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+    }
 
-      .destination-grid__title {
-        font-size: 2.2rem;
-      }
+    /* MÓVIL */
+    @media (min-width: 390px) and (max-width: 743px) {
+      .destination-grid {
+        padding: 1rem;
 
-      .destination-grid__subtitle {
-        font-size: 1.1rem;
-      }
+        &__filter-title {
+          font-size: 1.25rem;
+        }
 
-      .destination-grid__filter-title {
-        font-size: 1.5rem;
+        &__container {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
       }
     }
 
-    /* ===== DESKTOP (1024px en adelante) ===== */
-    @media (min-width: 1024px) {
-      .destination-grid__container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
+    /* TABLET */
+    @media (min-width: 744px) and (max-width: 1023px) {
+      .destination-grid {
+        padding: 1.5rem;
 
-      .destination-grid__title {
-        font-size: 2.5rem;
+        &__filter-title {
+          font-size: 1.4rem;
+        }
+
+        &__container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
       }
     }
 
-    /* ===== DESKTOP GRANDE (1200px en adelante) ===== */
-    @media (min-width: 1200px) {
-      .destination-grid__container {
-        gap: 2.5rem;
+    /* DESKTOP */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      .destination-grid {
+        padding: 1rem 0;
+
+        &__filter-title {
+          font-size: 1.5rem;
+        }
+
+        &__container {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+      }
+    }
+
+    /* DESKTOP GRANDE */
+    @media (min-width: 1441px) {
+      .destination-grid {
+        padding: 1.5rem 0;
+        max-width: 1600px;
+
+        &__filter-title {
+          font-size: 1.8rem;
+        }
+
+        &__container {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+        }
       }
     }
   `]

@@ -19,11 +19,11 @@ import { TagComponent } from '../../atoms/tag/tag.component';
   styles: [`
     .filter-chip {
       cursor: pointer;
-    }
 
-    .filter-chip--active app-tag {
-      --tag-bg: #ff6b35;
-      --tag-color: white;
+      &--active app-tag {
+        --tag-bg: #ff6b35;
+        --tag-color: white;
+      }
     }
   `]
 })

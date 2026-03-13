@@ -73,220 +73,217 @@ interface Slide {
     </section>
   `,
   styles: [`
-    /* ===== MOBILE FIRST ===== */
     .hero-slider {
       position: relative;
       height: 100vh;
       min-height: 500px;
       width: 100%;
       overflow: hidden;
+
+      &__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      &__slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+
+        &--active {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+      }
+
+      &__content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
+
+      &__title {
+        margin-bottom: 1.5rem;
+
+        &-line {
+          display: block;
+          font-size: 2.2rem;
+          font-weight: 300;
+          line-height: 1.2;
+          margin-bottom: 0.25rem;
+
+          &--highlight {
+            font-weight: 700;
+            color: #ffffff;
+          }
+        }
+      }
+
+      &__button {
+        background-color: #FF8F50;
+        color: #4E250E;
+        border: none;
+        border-radius: 30px;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &:hover {
+          background-color: #FF8F50;
+        }
+      }
+
+      &__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(98, 47, 96, 0.32);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+
+        &:hover {
+          background: rgb(98, 47, 96);
+        }
+
+        &--left {
+          left: 0rem;
+        }
+
+        &--right {
+          right: 0rem;
+        }
+      }
+
+      &__dots {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.8rem;
+        z-index: 10;
+      }
+
+      &__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.5);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.3s ease;
+
+        &--active {
+          background: #ff6b35;
+          transform: scale(1.2);
+        }
+      }
     }
 
-    .hero-slider__container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hero-slider__slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    }
-
-    .hero-slider__slide--active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .hero-slider__overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
-    }
-
-    .hero-slider__content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-align: center;
-    }
-
-    .hero-slider__title {
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-slider__title-line {
-      display: block;
-      font-size: 2.2rem;
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 0.25rem;
-    }
-
-    .hero-slider__title-line--highlight {
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .hero-slider__button {
-      background-color: #FF8F50;
-      color: #4E250E;
-      border: none;
-      border-radius: 30px;
-      padding: 0.8rem 2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .hero-slider__button:hover {
-      background-color: #FF8F50;
-    }
-
-    /* Flechas de navegación */
-    .hero-slider__arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(98, 47, 96, 0.32);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-slider__arrow:hover {
-      background: rgb(98, 47, 96);
-    }
-
-    .hero-slider__arrow--left {
-      left: 0rem;
-    }
-
-    .hero-slider__arrow--right {
-      right: 0rem;
-    }
-
-    /* Bolitas indicadoras */
-    .hero-slider__dots {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.8rem;
-      z-index: 10;
-    }
-
-    .hero-slider__dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: all 0.3s ease;
-    }
-
-    .hero-slider__dot--active {
-      background: #ff6b35;
-      transform: scale(1.2);
-    }
-
-    /* ===== TABLET (768px en adelante) ===== */
+    /* TABLET */
     @media (min-width: 768px) {
       .hero-slider {
         min-height: 600px;
-      }
 
-      .hero-slider__content {
-        padding: 0 2rem;
-      }
+        &__content {
+          padding: 0 2rem;
+        }
 
-      .hero-slider__title-line {
-        font-size: 3rem;
-      }
+        &__title-line {
+          font-size: 3rem;
+        }
 
-      .hero-slider__arrow {
-        width: 48px;
-        height: 48px;
-      }
+        &__arrow {
+          width: 48px;
+          height: 48px;
 
-      .hero-slider__arrow--left {
-        left: 0rem;
-      }
+          &--left {
+            left: 0rem;
+          }
 
-      .hero-slider__arrow--right {
-        right: 0rem;
-      }
+          &--right {
+            right: 0rem;
+          }
+        }
 
-      .hero-slider__dot {
-        width: 12px;
-        height: 12px;
+        &__dot {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
 
-    /* ===== DESKTOP (1024px en adelante) ===== */
+    /* DESKTOP */
     @media (min-width: 1024px) {
       .hero-slider {
         min-height: 700px;
-      }
 
-      .hero-slider__title-line {
-        font-size: 4rem;
-      }
+        &__title-line {
+          font-size: 4rem;
+        }
 
-      .hero-slider__button {
-        padding: 1rem 3rem;
-        font-size: 1.1rem;
-      }
+        &__button {
+          padding: 1rem 3rem;
+          font-size: 1.1rem;
+        }
 
-      .hero-slider__arrow {
-        width: 56px;
-        height: 56px;
-      }
+        &__arrow {
+          width: 56px;
+          height: 56px;
 
-      .hero-slider__arrow--left {
-        left: 0rem;
-      }
+          &--left {
+            left: 0rem;
+          }
 
-      .hero-slider__arrow--right {
-        right: 0rem;
-      }
+          &--right {
+            right: 0rem;
+          }
+        }
 
-      .hero-slider__dot {
-        width: 14px;
-        height: 14px;
-        gap: 1rem;
+        &__dot {
+          width: 14px;
+          height: 14px;
+          gap: 1rem;
+        }
       }
     }
   `]

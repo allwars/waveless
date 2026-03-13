@@ -42,105 +42,105 @@ import { ButtonComponent } from '../../shared/atoms/button/button.component';
       min-height: 600px;
       width: 100%;
       overflow: hidden;
+
+      &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2) 100%);
+      }
+
+      &__container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      &__content {
+        color: white;
+        max-width: 800px;
+      }
+
+      &__title {
+        margin-bottom: 2rem;
+
+        &-line {
+          display: block;
+          font-size: 4rem;
+          font-weight: 300;
+          line-height: 1.2;
+          margin-bottom: 0.5rem;
+
+          &--highlight {
+            font-weight: 700;
+            color: #ff6b35;
+          }
+        }
+      }
+
+      &__cta {
+        margin-top: 2rem;
+      }
+
+      &__button ::ng-deep .btn {
+        font-size: 1.2rem;
+        padding: 1rem 3rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
     }
 
-    .hero__background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    .hero__image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero__overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2) 100%);
-    }
-
-    .hero__container {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero__content {
-      color: white;
-      max-width: 800px;
-    }
-
-    .hero__title {
-      margin-bottom: 2rem;
-    }
-
-    .hero__title-line {
-      display: block;
-      font-size: 4rem;
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero__title-line--highlight {
-      font-weight: 700;
-      color: #ff6b35;
-    }
-
-    .hero__cta {
-      margin-top: 2rem;
-    }
-
-    .hero__button ::ng-deep .btn {
-      font-size: 1.2rem;
-      padding: 1rem 3rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Tablet */
+    /* TABLET */
     @media (max-width: 1024px) {
       .hero__title-line {
         font-size: 3rem;
       }
     }
 
-    /* Móvil */
+    /* MÓVIL */
     @media (max-width: 768px) {
       .hero {
         min-height: 500px;
-      }
 
-      .hero__container {
-        padding: 0 1rem;
-        justify-content: center;
-        text-align: center;
-      }
+        &__container {
+          padding: 0 1rem;
+          justify-content: center;
+          text-align: center;
+        }
 
-      .hero__title-line {
-        font-size: 2.2rem;
-      }
+        &__title-line {
+          font-size: 2.2rem;
+        }
 
-      .hero__overlay {
-        background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        &__overlay {
+          background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
       }
     }
 
-    /* Móvil pequeño */
+    /* MÓVIL PEQUEÑO */
     @media (max-width: 480px) {
       .hero__title-line {
         font-size: 1.8rem;

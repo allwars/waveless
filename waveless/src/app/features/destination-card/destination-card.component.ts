@@ -26,9 +26,7 @@ import { Destination } from '../../core/models/destination.model';
         <div class="destination-card__text">
           <h3 class="destination-card__title">{{ destination.title }}, {{ destination.location }} {{ destination.days }} días</h3>
           <p class="destination-card__description">{{ destination.description }}</p>
-
         </div>
-
 
         <div class="destination-card__actions">
           <div class="destination-card__breakdown-wrapper" #breakdownWrapper>
@@ -53,7 +51,7 @@ import { Destination } from '../../core/models/destination.model';
       </div>
     </article>
 
-    <!-- Modal para móvil (1 columna) -->
+    <!-- Modal para móvil -->
     @if (showPriceBreakdown && isMobile) {
       <div class="breakdown-modal">
         <div class="breakdown-modal__overlay" (click)="showPriceBreakdown = false"></div>
@@ -64,7 +62,10 @@ import { Destination } from '../../core/models/destination.model';
           </div>
 
           <div class="breakdown-modal__body">
-            <p class="breakdown-modal__location">{{ destination.title }}, {{ destination.location }} {{ destination.days }} días</p>
+            <p class="breakdown-modal__location">
+              {{ destination.title }}, {{ destination.location }}
+              <span class="breakdown-modal__location--days">{{ destination.days }} días</span>
+            </p>
 
             <div class="breakdown-modal__item">
               <span>Precio antes de impuestos</span>
@@ -87,7 +88,7 @@ import { Destination } from '../../core/models/destination.model';
       </div>
     }
 
-    <!-- Popup para desktop (2+ columnas) -->
+    <!-- Popup para desktop -->
     @if (showPriceBreakdown && !isMobile) {
       <div class="breakdown-popup" [style.top.px]="popupTop" [style.left.px]="popupLeft">
         <div class="breakdown-popup__content">
@@ -119,7 +120,7 @@ import { Destination } from '../../core/models/destination.model';
     }
   `,
   styles: [`
-    /* ===== MOBILE FIRST ===== */
+    /* ===== BASE ===== */
     .destination-card {
       background: white;
       border-radius: 16px;
@@ -127,145 +128,142 @@ import { Destination } from '../../core/models/destination.model';
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
-      min-height: 376px;
-      width: 264px;
       display: flex;
       flex-direction: column;
-    }
-
-    .destination-card__image-container {
-      position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-    }
-
-    .destination-card__image {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      min-height: 376px;
+
+      &__image-container {
+        position: relative;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+
+      &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &__tags {
+        margin-bottom: 0.5rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+      }
+
+      &__tag {
+        display: inline-block;
+        background-color: #ff6b35;
+        color: #342E34;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.2rem 0.8rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+      }
+
+      &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      &__text {
+        padding: 0.5rem 1.25rem;
+      }
+
+      &__title {
+        font-size: 0.9rem;
+        color: #622F60;
+        margin: 0 0 0.25rem 0;
+        line-height: 1.4;
+      }
+
+      &__description {
+        font-size: 1rem;
+        color: #342E34;
+        font-weight: 700;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.4;
+      }
+
+      &__price-row {
+        display: flex;
+        align-items: baseline;
+        flex-direction: column;
+      }
+
+      &__price-label {
+        font-size: 0.9rem;
+        color: #342E34;
+      }
+
+      &__price {
+        font-size: 1.25rem;
+        color: #342E34;
+      }
+
+      &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FBF6F4;
+        padding: 0.75rem 1.25rem;
+        margin-top: auto;
+      }
+
+      &__breakdown-wrapper {
+        position: static;
+      }
+
+      &__breakdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        background: none;
+        border: none;
+        color: #622F60;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0.45rem 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+          color: #622F60;
+        }
+      }
+
+      &__breakdown-icon {
+        transition: transform 0.3s ease;
+
+        &.rotated {
+          transform: rotate(180deg);
+        }
+      }
+
+      &__reserve-btn {
+        background-color: #ffffff;
+        color: #622F60;
+        border: 1px solid #622F60;
+        border-radius: 30px;
+        padding: 0.4rem 1.2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: #622F60;
+          color: #ffffff;
+        }
+      }
     }
 
-    .destination-card__content {
-      padding: 1rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .destination-card__tags {
-      margin-bottom: 0.5rem;
-      position: absolute;
-      top:10px;
-      right: 10px;
-
-
-    }
-
-    .destination-card__tag {
-      display: inline-block;
-      background-color: #ff6b35;
-      color: #342E34;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      text-transform: uppercase;
-    }
-
-    .destination-card__title {
-      font-size: 0.9rem;
-      color: #622F60;
-      margin: 0 0 0.25rem 0;
-      line-height: 1.4;
-    }
-
-    .destination-card__description {
-      font-size: 1rem;
-      color: #342E34;
-      font-weight: 700;
-      margin: 0 0 0.75rem 0;
-      line-height: 1.4;
-    }
-
-    .destination-card__price-row {
-      display: flex;
-      align-items: baseline;
-     flex-direction:column;
-    }
-
-    .destination-card__price-label {
-      font-size: 0.9rem;
-      color: #342E34;
-    }
-
-    .destination-card__price {
-      font-size: 1.25rem;
-      color: #342E34;
-    }
-    .destination-card__text{
-      padding:0.5rem 1.25rem;
-    }
-
-    .destination-card__actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #FBF6F4;
-      padding-top: 0.75rem;
-      margin-top: auto;
-      padding-left:1.25rem;
-      padding-right:1.25rem;
-    }
-
-    .destination-card__breakdown-wrapper {
-      position: static;
-    }
-
-    .destination-card__breakdown-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: none;
-      border: none;
-      color: #622F60;
-      font-size: 0.9rem;
-      cursor: pointer;
-      padding: 0.45rem 0;
-      transition: color 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .destination-card__breakdown-btn:hover {
-      color: #622F60;
-    }
-
-    .destination-card__breakdown-icon {
-      transition: transform 0.3s ease;
-    }
-
-    .destination-card__breakdown-icon.rotated {
-      transform: rotate(180deg);
-    }
-
-    .destination-card__reserve-btn {
-      background-color: #ffffff;
-    color: #622F60;
-    border: 1px solid #622F60;
-    border-radius: 30px;
-    padding: 0.4rem 1.2rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    }
-
-    .destination-card__reserve-btn:hover {
-      background-color: #622F60;
-      color: #ffffff;
-    }
-
-    /* ===== BREAKDOWN MODAL (MÓVIL - 1 columna) ===== */
+    /* ===== BREAKDOWN MODAL ===== */
     .breakdown-modal {
       position: fixed;
       top: 0;
@@ -277,28 +275,175 @@ import { Destination } from '../../core/models/destination.model';
       align-items: center;
       justify-content: center;
       animation: fadeIn 0.2s ease;
+
+      &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(4px);
+      }
+
+      &__content {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        background: white;
+        border-radius: 0;
+        animation: scaleIn 0.3s ease;
+        z-index: 10000;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        height: 100vh;
+      }
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      &__title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+      }
+
+      &__close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+        padding: 0.5rem;
+        line-height: 1;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #ff6b35;
+        }
+      }
+
+      &__body {
+        padding-bottom: 0.5rem;
+      }
+
+      &__location {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #622F60;
+        margin: 0 0 1.5rem 0;
+        padding-bottom: 0.75rem;
+
+        &--days {
+          font-size: 1rem;
+          color: #333;
+        }
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        font-size: 0.95rem;
+        color: #666;
+      }
+
+      &__total {
+        font-weight: 700;
+        color: #342E34;
+        border-bottom: none;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid #eaeaea;
+        font-size: 22px;
+      }
     }
 
-    .breakdown-modal__overlay {
+    /* ===== BREAKDOWN POPUP ===== */
+    .breakdown-popup {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-    }
-
-    .breakdown-modal__content {
-      position: relative;
-      width: 90%;
-      max-width: 400px;
+      width: 320px;
       background: white;
       border-radius: 24px;
-      padding: 1.5rem;
-      animation: scaleIn 0.3s ease;
-      z-index: 10000;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: fadeIn 0.2s ease;
+      border: 1px solid #eaeaea;
+
+      &__content {
+        border-radius: 24px;
+      }
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FBF6F4;
+        padding: 1.25rem;
+        border-radius: 24px 24px 0 0;
+        border-bottom: 1px solid #E0D9E0;
+      }
+
+      &__title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+      }
+
+      &__close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #999;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #ff6b35;
+        }
+      }
+
+      &__location {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.9rem;
+        color: #666;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      &__total {
+        font-weight: 700;
+        color: #342E34;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FBF6F4;
+        padding: 1.25rem;
+        border-radius: 0 0 24px 24px;
+        border-top: 1px solid #E0D9E0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes scaleIn {
@@ -312,191 +457,157 @@ import { Destination } from '../../core/models/destination.model';
       }
     }
 
-    .breakdown-modal__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
+    /* ===== MÓVIL ===== */
+    @media (min-width: 390px) and (max-width: 743px) {
+      .destination-card {
+        min-height: 350px;
 
-    .breakdown-modal__title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #333;
-      margin: 0;
-    }
+        &__text {
+          padding: 0.5rem 1rem;
+        }
 
-    .breakdown-modal__close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: #999;
-      cursor: pointer;
-      padding: 0.5rem;
-      line-height: 1;
-      transition: color 0.2s ease;
-    }
+        &__title {
+          font-size: 0.9rem;
+        }
 
-    .breakdown-modal__close:hover {
-      color: #ff6b35;
-    }
+        &__description {
+          font-size: 0.95rem;
+        }
 
-    .breakdown-modal__body {
-      padding-bottom: 0.5rem;
-    }
+        &__price {
+          font-size: 1.2rem;
+        }
 
-    .breakdown-modal__location {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #333;
-      margin: 0 0 1.5rem 0;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid #eaeaea;
-    }
+        &__actions {
+          padding: 0.75rem 1rem;
+        }
 
-    .breakdown-modal__item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #f0f0f0;
-      font-size: 0.95rem;
-      color: #666;
-    }
-
-    .breakdown-modal__total {
-      font-weight: 700;
-      color: #ff6b35;
-      border-bottom: none;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 2px solid #eaeaea;
-    }
-
- /* ===== BREAKDOWN POPUP (DESKTOP - 2+ columnas) ===== */
-.breakdown-popup {
-  position: absolute; /* Cambiado de fixed a absolute */
-  width: 320px;
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  z-index: 1000;
-  animation: fadeIn 0.2s ease;
-  border: 1px solid #eaeaea;
-  /* Eliminamos transform y margin-top negativos */
-}
-
-
-.breakdown-popup__content {
-  border-radius: 24px;
-}
-
-.breakdown-popup__header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  background-color: #FBF6F4;
-  padding: 1.25rem ;
-  border-radius: 24px 24px 0 0;
-    border-bottom: 1px solid #E0D9E0;
-}
-.breakdown-popup__total {
-
-}
-
-.breakdown-popup__title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-}
-
-.breakdown-popup__close {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  color: #999;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  transition: color 0.2s ease;
-}
-
-.breakdown-popup__close:hover {
-  color: #ff6b35;
-}
-
-.breakdown-popup__location {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 1rem 0;
-   padding: 0.5rem 1.25rem;
-
-}
-
-.breakdown-popup__item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.breakdown-popup__total {
-  font-weight: 700;
-  color: #342E34;
-  border-bottom: none;
-  margin-top: 0.5rem;
-  border-radius: 0 0 24px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #FBF6F4;
-  padding: 1.25rem ;
-   border-bottom: 1px solid #E0D9E0;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(-90%);
+        &__reserve-btn {
+          padding: 0.3rem 1rem;
+          font-size: 0.85rem;
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(-100%);
+
+      .breakdown-modal__content {
+        padding: 1.25rem;
       }
     }
 
-    /* ===== TABLET (600px en adelante) ===== */
-    @media (min-width: 600px) {
+    /* ===== TABLET ===== */
+    @media (min-width: 744px) and (max-width: 1023px) {
+      .destination-card {
+        min-height: 360px;
 
-      .destination-card__price {
-        font-size: 1.35rem;
-      }
+        &__text {
+          padding: 0.5rem 1.25rem;
+        }
 
-      .destination-card__reserve-btn {
-        padding: 0.5rem 1.5rem;
+        &__title {
+          font-size: 0.95rem;
+        }
+
+        &__description {
+          font-size: 1rem;
+        }
+
+        &__price {
+          font-size: 1.25rem;
+        }
+
+        &__actions {
+          padding: 0.75rem 1.25rem;
+        }
+
+        &__reserve-btn {
+          padding: 0.4rem 1.2rem;
+          font-size: 0.9rem;
+        }
       }
     }
 
-    /* ===== DESKTOP (900px en adelante) ===== */
-    @media (min-width: 900px) {
-      .destination-card__content {
-        padding: 0;
+    /* ===== DESKTOP ===== */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      .destination-card {
+        min-height: 376px;
+
+        &__text {
+          padding: 0.5rem 1.25rem;
+        }
+
+        &__title {
+          font-size: 1rem;
+        }
+
+        &__description {
+          font-size: 1.1rem;
+        }
+
+        &__price {
+          font-size: 1.35rem;
+        }
+
+        &__actions {
+          padding: 0.75rem 1.25rem;
+        }
+
+        &__reserve-btn {
+          padding: 0.4rem 1.2rem;
+          font-size: 0.9rem;
+        }
       }
 
-      .destination-card__title {
-        font-size: 1.2rem;
+      .breakdown-popup {
+        width: 300px;
+      }
+    }
+
+    /* ===== DESKTOP GRANDE ===== */
+    @media (min-width: 1441px) {
+      .destination-card {
+        min-height: 400px;
+
+        &__text {
+          padding: 0.75rem 1.5rem;
+        }
+
+        &__title {
+          font-size: 1.1rem;
+        }
+
+        &__description {
+          font-size: 1.2rem;
+        }
+
+        &__price {
+          font-size: 1.5rem;
+        }
+
+        &__actions {
+          padding: 1rem 1.5rem;
+        }
+
+        &__reserve-btn {
+          padding: 0.5rem 1.5rem;
+          font-size: 1rem;
+        }
+      }
+
+      .breakdown-popup {
+        width: 340px;
+
+        &__title {
+          font-size: 1.1rem;
+        }
+
+        &__item {
+          font-size: 1rem;
+          padding: 0.75rem 1.5rem;
+        }
+
+        &__total {
+          padding: 1.5rem;
+          font-size: 1.1rem;
+        }
       }
     }
   `]
@@ -537,7 +648,7 @@ export class DestinationCardComponent {
   }
 
   checkScreenSize() {
-    this.isMobile = window.innerWidth < 900;
+    this.isMobile = window.innerWidth < 743;
     if (!this.isMobile && this.showPriceBreakdown) {
       setTimeout(() => this.calculatePopupPosition(), 0);
     }

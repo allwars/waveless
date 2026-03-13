@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* ===== MOBILE FIRST ===== */
-/* Estilos base para móvil (0px a 767px) */
-
 /* Reset y estilos globales */
 * {
   margin: 0;
@@ -35,61 +32,25 @@ img {
   --border-radius: 8px;
 }
 
-/* Utilidades - Mobile First */
+/* Utilidades */
 .container {
   width: 100%;
-  max-width: 100%; /* En móvil ocupa todo el ancho */
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Hero - Mobile First */
 app-hero {
   display: block;
-  padding-top: 70px; /* Altura del header en móvil */
+  padding-top: 70px;
 }
 
-
-
-/* ===== TABLET (768px en adelante) ===== */
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px; /* Ancho típico de tablet */
-    padding: 0 2rem;
-  }
-
-  app-hero {
-    padding-top: 75px; /* Ajuste para tablet */
-  }
+input:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
 }
 
-/* ===== TABLET GRANDE / DESKTOP PEQUEÑO (992px en adelante) ===== */
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px; /* Ancho típico desktop pequeño */
-  }
-
-  app-hero {
-    padding-top: 80px; /* Altura del header en desktop */
-  }
-
-}
-
-/* ===== DESKTOP (1200px en adelante) ===== */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px; /* Ancho típico desktop */
-  }
-}
-
-/* ===== DESKTOP GRANDE (1400px en adelante) ===== */
-@media (min-width: 1400px) {
-  .container {
-    max-width: 1320px; /* Ancho típico desktop grande */
-  }
-}
-
-/* Utilidades adicionales (opcional, manteniendo Mobile First) */
+/* Utilidades de texto */
 .text-center {
   text-align: center;
 }
@@ -102,12 +63,26 @@ app-hero {
   text-align: right;
 }
 
-/* Ocultar elementos según dispositivo */
+/* Utilidades de visibilidad */
 .hide-on-mobile {
   display: none;
 }
 
+.show-on-mobile {
+  display: block;
+}
+
+/* TABLET */
 @media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    padding: 0 2rem;
+  }
+
+  app-hero {
+    padding-top: 75px;
+  }
+
   .hide-on-mobile {
     display: block;
   }
@@ -115,20 +90,33 @@ app-hero {
   .hide-on-tablet-up {
     display: none;
   }
-}
 
-/* Mostrar elementos según dispositivo */
-.show-on-mobile {
-  display: block;
-}
-
-@media (min-width: 768px) {
   .show-on-mobile {
     display: none;
   }
 }
-/* En src/styles.scss */
-input:focus-visible {
-  outline: none !important;
-  outline-offset: 0 !important;
+
+/* DESKTOP PEQUEÑO */
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+
+  app-hero {
+    padding-top: 80px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* DESKTOP GRANDE */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
 }

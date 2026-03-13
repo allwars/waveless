@@ -22,30 +22,31 @@ import { Component, Input } from '@angular/core';
       background-color: #f0f0f0;
       color: #333;
       transition: all 0.2s ease;
-    }
 
-    .tag--category {
-      background-color: #e6f3ff;
-      color: #0066cc;
-    }
+      &--category {
+        background-color: #e6f3ff;
+        color: #0066cc;
+      }
 
-    .tag--activity {
-      background-color: #fff0e6;
-      color: #ff6b35;
-    }
+      &--activity {
+        background-color: #fff0e6;
+        color: #ff6b35;
+      }
 
-    .tag--clickable {
-      cursor: pointer;
-    }
-    .tag--clickable:hover {
-      background-color: #e0e0e0;
-      transform: translateY(-1px);
-    }
+      &--clickable {
+        cursor: pointer;
 
-    .tag__count {
-      margin-left: 0.25rem;
-      font-size: 0.75rem;
-      opacity: 0.8;
+        &:hover {
+          background-color: #e0e0e0;
+          transform: translateY(-1px);
+        }
+      }
+
+      &__count {
+        margin-left: 0.25rem;
+        font-size: 0.75rem;
+        opacity: 0.8;
+      }
     }
   `]
 })

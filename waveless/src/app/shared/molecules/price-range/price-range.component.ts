@@ -31,26 +31,26 @@ import { InputComponent } from '../../atoms/input/input.component';
   styles: [`
     .price-range {
       padding: 1rem 0;
-    }
 
-    .price-range__title {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
+      &__title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
 
-    .price-range__inputs {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+      &__inputs {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-    .price-range__input {
-      flex: 1;
-    }
+      &__input {
+        flex: 1;
+      }
 
-    .price-range__separator {
-      color: #666;
+      &__separator {
+        color: #666;
+      }
     }
   `]
 })

@@ -21,43 +21,45 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       cursor: pointer;
       transition: all 0.3s ease;
       border-radius: 4px;
-    }
 
-    .btn--primary {
-      background-color: #ff6b35;
-      color: white;
-    }
-    .btn--primary:hover {
-      background-color: #e85a2a;
-    }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
 
-    .btn--secondary {
-      background-color: transparent;
-      color: #333;
-      border: 1px solid #ddd;
-    }
-    .btn--secondary:hover {
-      background-color: #f5f5f5;
-    }
+      &--primary {
+        background-color: #ff6b35;
+        color: white;
 
-    .btn--small {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
+        &:hover {
+          background-color: #e85a2a;
+        }
+      }
 
-    .btn--medium {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-    }
+      &--secondary {
+        background-color: transparent;
+        color: #333;
+        border: 1px solid #ddd;
 
-    .btn--large {
-      padding: 1rem 2rem;
-      font-size: 1.125rem;
-    }
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
 
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+      &--small {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      &--medium {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      &--large {
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+      }
     }
   `]
 })

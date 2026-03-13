@@ -9,7 +9,8 @@ import { Title, Meta } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule, HomeLayoutComponent],
   template: `
-<app-home-layout [destinations]="(destinations$ | async)!"></app-home-layout>  `
+    <app-home-layout [destinations]="(destinations$ | async)!"></app-home-layout>
+  `
 })
 export class HomePageComponent implements OnInit {
   private destinationService = inject(DestinationService);
@@ -19,7 +20,6 @@ export class HomePageComponent implements OnInit {
   destinations$ = this.destinationService.getDestinations();
 
   ngOnInit(): void {
-    // SEO - Esto se ejecuta en servidor y cliente
     this.titleService.setTitle('WaveLess - Vive tus propias aventuras');
     this.metaService.updateTag({
       name: 'description',

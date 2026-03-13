@@ -13,7 +13,7 @@ import { FilterOption } from '../../core/models/destination.model';
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M5 10H15M2.5 5H17.5M7.5 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          Filtrar mi búsqueda
+          Ver filtros
         </button>
       </div>
     }
@@ -193,7 +193,6 @@ import { FilterOption } from '../../core/models/destination.model';
                   <div class="filter-price__input-group">
                     <label class="filter-price__label">Mínimo</label>
                     <div class="filter-price__field-wrapper">
-
                       <input
                         type="number"
                         class="filter-price__field"
@@ -204,7 +203,6 @@ import { FilterOption } from '../../core/models/destination.model';
                   <div class="filter-price__input-group">
                     <label class="filter-price__label">Máximo</label>
                     <div class="filter-price__field-wrapper">
-
                       <input
                         type="number"
                         class="filter-price__field"
@@ -371,48 +369,48 @@ import { FilterOption } from '../../core/models/destination.model';
             </div>
 
             <!-- Precio -->
-<div class="filter-section">
-  <div class="filter-section__header" (click)="toggleSection('precio')">
-    <div class="filter-section__header-left">
-      <img
-        src="assets/images/price-color.svg"
-        alt="Precio"
-        class="filter-section__icon"
-        width="24"
-        height="24">
-      <h3 class="filter-section__title">Precio</h3>
-    </div>
-    <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['precio']" width="16" height="16" viewBox="0 0 16 16">
-      <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
+            <div class="filter-section">
+              <div class="filter-section__header" (click)="toggleSection('precio')">
+                <div class="filter-section__header-left">
+                  <img
+                    src="assets/images/price-color.svg"
+                    alt="Precio"
+                    class="filter-section__icon"
+                    width="24"
+                    height="24">
+                  <h3 class="filter-section__title">Precio</h3>
+                </div>
+                <svg class="filter-section__arrow" [class.filter-section__arrow--rotated]="expandedSections['precio']" width="16" height="16" viewBox="0 0 16 16">
+                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
 
-  @if (expandedSections['precio']) {
-    <div class="filter-price">
-      <div class="filter-price__row">
-        <span class="filter-price__label">Mínimo</span>
-        <div class="filter-price__input-wrapper">
-          <input
-            type="text"
-            class="filter-price__input"
-            placeholder="0"
-            (input)="onMinPriceChange($event)">
-        </div>
-      </div>
+              @if (expandedSections['precio']) {
+                <div class="filter-price">
+                  <div class="filter-price__row">
+                    <span class="filter-price__label">Mínimo</span>
+                    <div class="filter-price__input-wrapper">
+                      <input
+                        type="text"
+                        class="filter-price__input"
+                        placeholder="0"
+                        (input)="onMinPriceChange($event)">
+                    </div>
+                  </div>
 
-      <div class="filter-price__row">
-        <span class="filter-price__label">Máximo</span>
-        <div class="filter-price__input-wrapper">
-          <input
-            type="text"
-            class="filter-price__input"
-            placeholder="10000"
-            (input)="onMaxPriceChange($event)">
-        </div>
-      </div>
-    </div>
-  }
-</div>
+                  <div class="filter-price__row">
+                    <span class="filter-price__label">Máximo</span>
+                    <div class="filter-price__input-wrapper">
+                      <input
+                        type="text"
+                        class="filter-price__input"
+                        placeholder="10000"
+                        (input)="onMaxPriceChange($event)">
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
           </div>
 
           <div class="mobile-menu__footer">
@@ -423,7 +421,6 @@ import { FilterOption } from '../../core/models/destination.model';
     }
   `,
   styles: [`
-    /* ===== MOBILE FIRST (< 1024px) ===== */
     .filter-button-container {
       padding: 1rem;
       background: white;
@@ -432,218 +429,196 @@ import { FilterOption } from '../../core/models/destination.model';
 
     .filter-button {
       width: 100%;
+      max-width: 152px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      background-color: white;
-      border: 1px solid #ff6b35;
-      color: #ff6b35;
+      background-color: #FAF7F5;
+      border: 1px solid #622F6029;
+      color: #2F222F;
       font-size: 1rem;
       font-weight: 500;
       padding: 0.75rem;
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.2s ease;
+      margin: 0 auto;
+
+      &:hover {
+        background-color: #ff6b35;
+        color: white;
+      }
     }
 
-    .filter-button:hover {
-      background-color: #ff6b35;
-      color: white;
-    }
-
-    /* Menú móvil deslizante */
     .mobile-menu {
-      position: fixed;
-      top: 0;
+      position: absolute;
+      top: 910px;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 2000;
       display: flex;
-    }
 
-    .mobile-menu__overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px);
-    }
-
-    .mobile-menu__content {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      height: 100vh;
-      background: white;
-      margin-left: auto;
-      animation: slideIn 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    .mobile-menu__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem;
-      border-bottom: 1px solid #eaeaea;
-    }
-
-    .mobile-menu__title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #333;
-      margin: 0;
-    }
-
-    .mobile-menu__close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: #999;
-      cursor: pointer;
-      padding: 0.5rem;
-      line-height: 1;
-    }
-
-    .mobile-menu__close:hover {
-      color: #ff6b35;
-    }
-
-    .mobile-menu__body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.5rem;
-    }
-
-    .mobile-menu__footer {
-      padding: 1.5rem;
-      border-top: 1px solid #eaeaea;
-    }
-
-    .mobile-menu__apply-btn {
-      width: 100%;
-      background-color: #ff6b35;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 1rem;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .mobile-menu__apply-btn:hover {
-      background-color: #e85a2a;
-    }
-
-    /* ===== DESKTOP (≥ 1024px) ===== */
-    @media (min-width: 1024px) {
-      .filter-sidebar {
-        width: 300px;
-        background: #FBF6F4;
-        height: fit-content;
-        position: sticky;
-        border-radius: 16px;
-        top: 80px;
-        padding: 1.5rem 0;
-        margin-top: 110px;
+      &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
       }
 
-      .filter-sidebar__header {
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid #E0D9E0;
-        padding: 0 1.5rem 1.5rem;
-        text-align: center;
+      &__content {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: 100vh;
+        background: white;
+        margin-right: auto;
+        animation: slideInLeft 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 0px 42px rgba(0, 0, 0, 0.08);
       }
 
-      .filter-sidebar__title {
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      &__title {
         font-size: 1.25rem;
         font-weight: 600;
         color: #333;
         margin: 0;
       }
 
-      .filter-sidebar__content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 0 1.5rem;
+      &__close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+        padding: 0.5rem;
+        line-height: 1;
+
+        &:hover {
+          color: #ff6b35;
+        }
+      }
+
+      &__body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+      }
+
+      &__footer {
+        padding: 1.5rem;
+        border-top: 1px solid #eaeaea;
+      }
+
+      &__apply-btn {
+        width: 100%;
+        background-color: #ff6b35;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #e85a2a;
+        }
       }
     }
 
-    /* Estilos comunes para filtros */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
     .filter-section {
       padding-bottom: 0.5rem;
-    }
 
-    .filter-section__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
 
-    .filter-section__header:hover {
-      background-color: rgba(255,107,53,0.05);
-    }
+        &:hover {
+          background-color: rgba(255,107,53,0.05);
+        }
+      }
 
-    .filter-section__header-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+      &__header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
 
-    .filter-section__icon {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
+      &__icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
 
-    .filter-section__title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #333;
-      margin: 0;
-    }
+      &__title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
 
-    .filter-section__arrow {
-      width: 16px;
-      height: 16px;
-      color: #666;
-      transition: transform 0.3s ease;
-    }
+      &__arrow {
+        width: 16px;
+        height: 16px;
+        color: #666;
+        transition: transform 0.3s ease;
 
-    .filter-section__arrow--rotated {
-      transform: rotate(180deg);
-    }
+        &--rotated {
+          transform: rotate(180deg);
+        }
+      }
 
-    .filter-section__options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding: 0.5rem 0 1rem 2rem;
-    }
+      &__options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.5rem 0 1rem 2rem;
 
-    .filter-section__options--indented {
-      margin-left: 1.5rem;
-      margin-top: 0.5rem;
+        &--indented {
+          margin-left: 1.5rem;
+          margin-top: 0.5rem;
+        }
+      }
+
+      &__more-btn {
+        background: none;
+        border: none;
+        color: #ff6b35;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0.5rem 0 1rem 2rem;
+        margin-top: 0.25rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .filter-option {
@@ -653,131 +628,242 @@ import { FilterOption } from '../../core/models/destination.model';
       cursor: pointer;
       font-size: 0.95rem;
       color: #666;
-    }
 
-    .filter-option__checkbox {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-      accent-color: #ff6b35;
-    }
+      &__checkbox {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #ff6b35;
+      }
 
+      &__info {
+        width: 12px;
+        height: 12px;
+        opacity: 0.5;
+        cursor: help;
 
-    .filter-option__info {
-      width: 12px;
-      height: 12px;
-      opacity: 0.5;
-      cursor: help;
-    }
-
-    .filter-option__info:hover {
-      opacity: 1;
-    }
-
-    .filter-option__count {
-      color: #999;
-      font-size: 0.85rem;
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
 
     .filter-subsection {
       margin: 0.5rem 0 0.5rem 1rem;
+
+      &__title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #666;
+        margin: 0 0 0.75rem 0;
+      }
     }
 
-    .filter-subsection__title {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #666;
-      margin: 0 0 0.75rem 0;
+    .filter-price {
+      padding: 0.5rem 0 0.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+
+      &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        border: 1px solid #622F60;
+        padding: 12px;
+        border-radius: 208px;
+      }
+
+      &__label {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      &__input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      &__currency {
+        position: absolute;
+        left: 0;
+        color: #ff6b35;
+        font-size: 0.9rem;
+        font-weight: 500;
+        z-index: 1;
+      }
+
+      &__input {
+        width: 100%;
+        padding: 0.4rem 0 0.4rem 1.2rem;
+        border: none;
+        border-bottom: 1px solid #ff6b35;
+        font-size: 0.9rem;
+        color: #333;
+        background: transparent;
+
+        &:focus {
+          outline: none;
+          border-bottom-color: #e85a2a;
+        }
+
+        &::placeholder {
+          color: #ccc;
+        }
+      }
     }
 
-    .filter-section__more-btn {
-      background: none;
-      border: none;
-      color: #ff6b35;
-      font-size: 0.9rem;
-      cursor: pointer;
-      padding: 0.5rem 0 1rem 2rem;
-      margin-top: 0.25rem;
+    /* MÓVIL */
+    @media (min-width: 390px) and (max-width: 743px) {
+      .filter-button-container {
+        padding: 0.75rem 1rem;
+      }
+
+      .filter-button {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2000;
+        display: flex;
+
+        &__content {
+          max-width: 100%;
+        }
+
+        &__header {
+          padding: 1rem;
+        }
+
+        &__body {
+          padding: 1rem;
+        }
+
+        &__footer {
+          padding: 1rem;
+        }
+      }
+
+      .filter-price {
+        padding: 0.5rem 0;
+      }
     }
 
-    .filter-section__more-btn:hover {
-      text-decoration: underline;
+    /* TABLET */
+    @media (min-width: 744px) and (max-width: 1023px) {
+      .filter-button-container {
+        padding: 1rem 1.5rem;
+      }
+
+      .filter-button {
+        font-size: 1rem;
+        padding: 0.75rem;
+      }
+
+      .mobile-menu {
+        position: absolute;
+        top: 910px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2000;
+        display: flex;
+
+        &__content {
+          max-width: 380px;
+        }
+
+        &__header {
+          padding: 1.25rem;
+        }
+
+        &__body {
+          padding: 1.25rem;
+        }
+
+        &__footer {
+          padding: 1.25rem;
+        }
+      }
     }
 
-    /* Precio */
-  .filter-price {
-  padding: 0.5rem 0 0.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
+    /* DESKTOP */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      .filter-button {
+        margin: 0;
+      }
 
-.filter-price__field {
-  display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    border: 1px solid #622F60;
-    padding: 12px;
-    border-radius: 208px;
-}
+      .filter-section__title {
+        font-size: 1rem;
+      }
 
-.filter-price__label {
-  font-size: 0.9rem;
-  color: #666;
-}
+      .filter-option {
+        font-size: 0.9rem;
+      }
 
-.filter-price__input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+      .filter-price {
+        padding: 0.5rem 0;
+      }
+    }
 
-.filter-price__currency {
-  position: absolute;
-  left: 0;
-  color: #ff6b35;
-  font-size: 0.9rem;
-  font-weight: 500;
-  z-index: 1;
-}
+    /* DESKTOP GRANDE */
+    @media (min-width: 1441px) {
+      .filter-sidebar {
+        width: 320px;
+        background: #FBF6F4;
+        height: fit-content;
+        position: sticky;
+        border-radius: 16px;
+        top: 110px;
+        padding: 2rem 0;
+        margin-top: 120px;
 
-.filter-price__input {
-  width: 100%;
-  padding: 0.4rem 0 0.4rem 1.2rem;
-  border: none;
-  border-bottom: 1px solid #ff6b35;
-  font-size: 0.9rem;
-  color: #333;
-  background: transparent;
-}
+        &__header {
+          margin-bottom: 2rem;
+          border-bottom: 1px solid #E0D9E0;
+          padding: 0 2rem 2rem;
+          text-align: center;
+        }
 
-.filter-price__input:focus {
-  outline: none;
-  border-bottom-color: #e85a2a;
-}
+        &__title {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
 
-.filter-price__input::placeholder {
-  color: #ccc;
-}
+        &__content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          padding: 0 2rem;
+        }
+      }
 
-/* Versión móvil */
-@media (max-width: 1023px) {
-  .filter-price {
-    padding: 0.5rem 0;
-  }
-}
+      .filter-section__title {
+        font-size: 1.1rem;
+      }
 
-/* Versión móvil - mismo estilo */
-@media (max-width: 1023px) {
-  .filter-price {
-    padding: 0.5rem 0 0.5rem 0;
-  }
+      .filter-option {
+        font-size: 1rem;
+      }
 
-  .filter-price__input-wrapper {
-    max-width: 120px;
-  }
-}
+      .filter-price {
+        padding: 0.5rem 0;
+
+        &__field {
+          padding: 14px;
+        }
+      }
+    }
   `]
 })
 export class FilterSidebarComponent {
@@ -825,7 +911,7 @@ export class FilterSidebarComponent {
   }
 
   checkScreenSize() {
-    this.isMobile = window.innerWidth < 1024;
+    this.isMobile = window.innerWidth < 1440;
     if (!this.isMobile) {
       this.showMobileMenu = false;
     }

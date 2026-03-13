@@ -22,64 +22,78 @@ import { Component } from '@angular/core';
     </footer>
   `,
   styles: [`
-    /* ===== MOBILE FIRST ===== */
     .footer {
       background: white;
       border-top: 1px solid #eaeaea;
-      padding: 2rem 0;
-      margin-top: 3rem;
+      padding: 2rem 0 0;
+
+      &__container {
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      &__logo {
+        padding: 48px 32px;
+        width: 100%;
+
+        &-img {
+          display: block;
+          width: 150px;
+          height: auto;
+          opacity: 0.8;
+          transition: opacity 0.2s ease;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      &__copyright {
+        font-size: 0.9rem;
+        color: #622F60;
+        text-align: center;
+        background-color: #E0D9E0;
+        width: 100%;
+        height: 52px;
+        padding: 16px 0;
+        font-weight: 700;
+      }
     }
 
-    .footer__container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .footer__logo-img {
-      display: block;
-      width: 150px;
-      height: auto;
-      opacity: 0.8;
-      transition: opacity 0.2s ease;
-    }
-
-    .footer__logo-img:hover {
-      opacity: 1;
-    }
-
-    .footer__copyright {
-      font-size: 0.9rem;
-      color: #666;
-      text-align: center;
-    }
-
-    /* ===== TABLET (768px en adelante) ===== */
+    /* TABLET */
     @media (min-width: 768px) {
       .footer {
-        padding: 2.5rem 0;
-      }
+        padding: 2.5rem 0 0;
 
-      .footer__container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 2rem;
-      }
+        &__logo {
+          padding: 48px 24px;
+        }
 
-      .footer__copyright {
-        text-align: right;
+        &__container {
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+
+        &__copyright {
+          text-align: center;
+        }
       }
     }
 
-    /* ===== DESKTOP (1024px en adelante) ===== */
+    /* DESKTOP */
     @media (min-width: 1024px) {
       .footer {
-        padding: 3rem 0;
+        padding: 3rem 0 0;
+
+        &__logo {
+          padding: 48px 40px;
+        }
       }
     }
   `]

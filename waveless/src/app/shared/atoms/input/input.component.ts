@@ -32,33 +32,33 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       gap: 0.25rem;
     }
 
-    .input__label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #333;
-    }
-
     .input {
       padding: 0.75rem;
       border: 1px solid #ddd;
       border-radius: 4px;
       font-size: 1rem;
       transition: all 0.2s ease;
-    }
 
-    .input:focus {
-      outline: none;
-      border-color: #ff6b35;
-      box-shadow: 0 0 0 2px rgba(255,107,53,0.1);
-    }
+      &:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 2px rgba(255,107,53,0.1);
+      }
 
-    .input--error {
-      border-color: #dc3545;
-    }
+      &--error {
+        border-color: #dc3545;
+      }
 
-    .input__error {
-      font-size: 0.75rem;
-      color: #dc3545;
+      &__label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #333;
+      }
+
+      &__error {
+        font-size: 0.75rem;
+        color: #dc3545;
+      }
     }
   `],
   providers: [
